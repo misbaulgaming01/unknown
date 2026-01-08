@@ -312,24 +312,9 @@
     </div>
   </nav>
 
-<!-- Firebase SDK -->
-<script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-database-compat.js"></script>
-
 <script>
 // Firebase Configuration
-const firebaseConfig = {
-  apiKey: "AIzaSyCINJWGPfihCFnRHJxXRTvC7r5gRkFbjKQ",
-  databaseURL: "https://shadow-93ea0-default-rtdb.firebaseio.com",
-  projectId: "shadow-93ea0",
-  storageBucket: "shadow-93ea0.firebasestorage.app",
-  appId: "1:503515972312:android:2a08e3ec135b1fdaaa8dad"
-};
-
-// Initialize Firebase
-firebase.initializeApp(firebaseConfig);
-const database = firebase.database();
-
+const FIREBASE_DATABASE_URL = 'https://shadow-93ea0-default-rtdb.firebaseio.com';
 const HISTORY_API = 'https://draw.ar-lottery01.com/WinGo/WinGo_1M/GetHistoryIssuePage.json';
 
 let historyData = [];
@@ -340,13 +325,12 @@ let processedPeriods = new Set();
 // Validate key against Firebase
 async function validateKey(inputKey) {
   try {
-    const snapshot = await database.ref('keys').once('value');
+    const response = await fetch(`${FIREBASE_DATABASE_URL}/keys.json`);
+    const keys = await response.json();
     
-    if (!snapshot.exists()) {
+    if (!keys) {
       return { valid: false, message: 'No keys found in database' };
     }
-    
-    const keys = snapshot.val();
     
     for (const keyId in keys) {
       const keyData = keys[keyId];
@@ -386,14 +370,12 @@ async function checkKeyValidity() {
   
   const storedExpiry = localStorage.getItem('expiresAt');
   if (storedExpiry && Date.now() > parseInt(storedExpiry, 10)) {
-    console.log('Key expired locally');
     logout();
     return false;
   }
   
   const result = await validateKey(storedKey);
   if (!result.valid) {
-    console.log('Key expired or invalid on Firebase:', result.message);
     logout();
     return false;
   }
@@ -576,7 +558,6 @@ function updateStats() {
   const jackpots = historyData.filter(h => h.numberWin === true).length;
   const total = completed.length;
   
-  // WIN RATE = (WINS + JACKPOTS) / TOTAL
   const effectiveWins = wins + jackpots;
   const winRate = total > 0 ? ((effectiveWins / total) * 100).toFixed(1) : '0.0';
 
@@ -631,7 +612,7 @@ function renderHistory() {
 function generateSmartPrediction() {
   const completedHistory = historyData.filter(h => h.status !== 'PENDING' && h.actualNum !== undefined);
   
-  // Rule 1: Triple Same Breaker - if last 3 actuals are same side, flip
+  // Rule 1: Triple Same Breaker
   if (completedHistory.length >= 3) {
     const lastThree = completedHistory.slice(0, 3);
     const lastThreeSides = lastThree.map(h => h.actualNum >= 5 ? 'BIG' : 'SMALL');
@@ -660,7 +641,6 @@ function generateSmartPrediction() {
     const lastFour = completedHistory.slice(0, 4);
     const sides = lastFour.map(h => h.actualNum >= 5 ? 'BIG' : 'SMALL');
     
-    // Check for alternating pattern: B-S-B-S or S-B-S-B
     if (sides[0] !== sides[1] && sides[1] !== sides[2] && sides[2] !== sides[3]) {
       const nextSide = sides[0] === 'BIG' ? 'SMALL' : 'BIG';
       const number = generateNumberForSide(nextSide);
@@ -674,7 +654,6 @@ function generateSmartPrediction() {
     const bigCount = lastTen.filter(h => h.actualNum >= 5).length;
     const smallCount = lastTen.length - bigCount;
     
-    // If heavy imbalance, predict the less frequent side
     if (bigCount >= 7) {
       const number = generateNumberForSide('SMALL');
       return { side: 'SMALL', number };
@@ -685,11 +664,10 @@ function generateSmartPrediction() {
     }
   }
   
-  // Rule 5: Streak Following - follow winning streaks
+  // Rule 5: Streak Following
   if (completedHistory.length >= 2) {
     const lastTwo = completedHistory.slice(0, 2);
     if (lastTwo[0].status === 'WIN' && lastTwo[1].status === 'WIN') {
-      // Continue with last actual's side
       const lastActual = completedHistory[0].actualNum;
       const side = lastActual >= 5 ? 'BIG' : 'SMALL';
       const number = generateNumberForSide(side);
@@ -697,19 +675,18 @@ function generateSmartPrediction() {
     }
   }
   
-  // Rule 6: Default - continue with last actual's side with randomness
+  // Rule 6: Default with randomness
   if (completedHistory.length >= 1) {
     const lastActual = completedHistory[0].actualNum;
     const baseSide = lastActual >= 5 ? 'BIG' : 'SMALL';
     
-    // Add 30% chance to flip for unpredictability
     const shouldFlip = Math.random() < 0.3;
     const side = shouldFlip ? (baseSide === 'BIG' ? 'SMALL' : 'BIG') : baseSide;
     const number = generateNumberForSide(side);
     return { side, number };
   }
   
-  // Fallback: random with time-based bias
+  // Fallback
   const now = getIST();
   const minute = now.getMinutes();
   const timeBias = (minute % 2 === 0) ? 0.55 : 0.45;
@@ -723,8 +700,7 @@ function generateNumberForSide(side) {
   const small = [0, 1, 2, 3, 4];
   const pool = side === 'BIG' ? big : small;
   
-  // Weighted random - favor middle numbers slightly
-  const weights = side === 'BIG' ? [0.15, 0.2, 0.3, 0.2, 0.15] : [0.15, 0.2, 0.3, 0.2, 0.15];
+  const weights = [0.15, 0.2, 0.3, 0.2, 0.15];
   const random = Math.random();
   let cumulative = 0;
   
