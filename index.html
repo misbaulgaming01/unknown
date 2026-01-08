@@ -57,6 +57,10 @@
     .login-footer{text-align:center;font-size:0.75rem;color:rgba(255,255,255,0.5);margin-top:24px;}
     .login-error{color:#ef4444;text-align:center;font-size:0.85rem;margin-top:12px;}
     
+    .telegram-btn{width:100%;padding:14px;margin-top:16px;border:none;border-radius:50px;font-size:1rem;font-weight:bold;color:#fff;background:linear-gradient(135deg,#0088cc,#00aced);cursor:pointer;transition:all 0.3s;display:flex;align-items:center;justify-content:center;gap:10px;text-decoration:none;}
+    .telegram-btn:hover{opacity:0.9;transform:scale(1.02);}
+    .telegram-btn svg{width:22px;height:22px;}
+    
     .dashboard{display:none;}
     .header{text-align:center;padding:20px;margin-bottom:20px;position:relative;}
     .header h1{font-size:clamp(1.2rem,5vw,1.5rem);font-weight:bold;background:linear-gradient(135deg,var(--primary),var(--secondary));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
@@ -160,7 +164,14 @@
           <span id="loginBtnText">UNLOCK</span>
         </button>
       </form>
-      <p class="login-footer">TELEGRAM USERNAME BY TEAM - ITACHIIXT</p>
+      
+      <!-- TELEGRAM BUTTON -->
+      <a href="https://t.me/ITACHIIXT" target="_blank" rel="noopener noreferrer" class="telegram-btn">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>
+        GET NEW KEY - CONTACT US
+      </a>
+      
+      <p class="login-footer">TELEGRAM USERNAME BY TEAM - @ITACHIIXT</p>
     </div>
   </div>
 
@@ -373,7 +384,6 @@ async function checkKeyValidity() {
     return false;
   }
   
-  // Check local expiry first
   const storedExpiry = localStorage.getItem('expiresAt');
   if (storedExpiry && Date.now() > parseInt(storedExpiry, 10)) {
     console.log('Key expired locally');
@@ -381,7 +391,6 @@ async function checkKeyValidity() {
     return false;
   }
   
-  // Check with Firebase
   const result = await validateKey(storedKey);
   if (!result.valid) {
     console.log('Key expired or invalid on Firebase:', result.message);
@@ -517,7 +526,7 @@ function initDashboard() {
   setInterval(updateTimer, 1000);
   setInterval(autoPredict, 1000);
   setInterval(checkResults, 5000);
-  setInterval(checkKeyValidity, 10000); // Check key validity every 10 seconds
+  setInterval(checkKeyValidity, 10000);
   
   updateTimer();
   autoPredict();
@@ -564,20 +573,23 @@ function updateStats() {
   const completed = historyData.filter(h => h.status !== 'PENDING');
   const wins = historyData.filter(h => h.status === 'WIN').length;
   const losses = historyData.filter(h => h.status === 'LOSS').length;
-  const numWins = historyData.filter(h => h.numberWin === true).length;
+  const jackpots = historyData.filter(h => h.numberWin === true).length;
   const total = completed.length;
-  const winRate = total > 0 ? ((wins / total) * 100).toFixed(1) : '0.0';
+  
+  // WIN RATE = (WINS + JACKPOTS) / TOTAL
+  const effectiveWins = wins + jackpots;
+  const winRate = total > 0 ? ((effectiveWins / total) * 100).toFixed(1) : '0.0';
 
   document.getElementById('totalCount').textContent = total;
   document.getElementById('winCount').textContent = wins;
   document.getElementById('lossCount').textContent = losses;
-  document.getElementById('numWinCount').textContent = numWins;
+  document.getElementById('numWinCount').textContent = jackpots;
   document.getElementById('winRate').textContent = winRate + '%';
   
   document.getElementById('totalCount2').textContent = total;
   document.getElementById('winCount2').textContent = wins;
   document.getElementById('lossCount2').textContent = losses;
-  document.getElementById('numWinCount2').textContent = numWins;
+  document.getElementById('numWinCount2').textContent = jackpots;
   document.getElementById('winRate2').textContent = winRate + '%';
 }
 
@@ -615,7 +627,7 @@ function renderHistory() {
   updateStats();
 }
 
-// SMART PREDICTION LOGIC
+// AI PATTERN PREDICTION ENGINE
 function generateSmartPrediction() {
   const completedHistory = historyData.filter(h => h.status !== 'PENDING' && h.actualNum !== undefined);
   
@@ -631,7 +643,7 @@ function generateSmartPrediction() {
     }
   }
   
-  // Rule 2: Two Loss Same Prediction Breaker - if 2 consecutive losses with same prediction, flip
+  // Rule 2: Two Loss Same Prediction Breaker
   if (completedHistory.length >= 2) {
     const lastTwo = completedHistory.slice(0, 2);
     
@@ -643,16 +655,65 @@ function generateSmartPrediction() {
     }
   }
   
-  // Rule 3: Default - continue with last actual's side
+  // Rule 3: Alternating Pattern Detection
+  if (completedHistory.length >= 4) {
+    const lastFour = completedHistory.slice(0, 4);
+    const sides = lastFour.map(h => h.actualNum >= 5 ? 'BIG' : 'SMALL');
+    
+    // Check for alternating pattern: B-S-B-S or S-B-S-B
+    if (sides[0] !== sides[1] && sides[1] !== sides[2] && sides[2] !== sides[3]) {
+      const nextSide = sides[0] === 'BIG' ? 'SMALL' : 'BIG';
+      const number = generateNumberForSide(nextSide);
+      return { side: nextSide, number };
+    }
+  }
+  
+  // Rule 4: Frequency Analysis (last 10 results)
+  if (completedHistory.length >= 5) {
+    const lastTen = completedHistory.slice(0, Math.min(10, completedHistory.length));
+    const bigCount = lastTen.filter(h => h.actualNum >= 5).length;
+    const smallCount = lastTen.length - bigCount;
+    
+    // If heavy imbalance, predict the less frequent side
+    if (bigCount >= 7) {
+      const number = generateNumberForSide('SMALL');
+      return { side: 'SMALL', number };
+    }
+    if (smallCount >= 7) {
+      const number = generateNumberForSide('BIG');
+      return { side: 'BIG', number };
+    }
+  }
+  
+  // Rule 5: Streak Following - follow winning streaks
+  if (completedHistory.length >= 2) {
+    const lastTwo = completedHistory.slice(0, 2);
+    if (lastTwo[0].status === 'WIN' && lastTwo[1].status === 'WIN') {
+      // Continue with last actual's side
+      const lastActual = completedHistory[0].actualNum;
+      const side = lastActual >= 5 ? 'BIG' : 'SMALL';
+      const number = generateNumberForSide(side);
+      return { side, number };
+    }
+  }
+  
+  // Rule 6: Default - continue with last actual's side with randomness
   if (completedHistory.length >= 1) {
     const lastActual = completedHistory[0].actualNum;
-    const side = lastActual >= 5 ? 'BIG' : 'SMALL';
+    const baseSide = lastActual >= 5 ? 'BIG' : 'SMALL';
+    
+    // Add 30% chance to flip for unpredictability
+    const shouldFlip = Math.random() < 0.3;
+    const side = shouldFlip ? (baseSide === 'BIG' ? 'SMALL' : 'BIG') : baseSide;
     const number = generateNumberForSide(side);
     return { side, number };
   }
   
-  // Fallback: random
-  const side = Math.random() < 0.5 ? 'BIG' : 'SMALL';
+  // Fallback: random with time-based bias
+  const now = getIST();
+  const minute = now.getMinutes();
+  const timeBias = (minute % 2 === 0) ? 0.55 : 0.45;
+  const side = Math.random() < timeBias ? 'BIG' : 'SMALL';
   const number = generateNumberForSide(side);
   return { side, number };
 }
@@ -661,6 +722,19 @@ function generateNumberForSide(side) {
   const big = [5, 6, 7, 8, 9];
   const small = [0, 1, 2, 3, 4];
   const pool = side === 'BIG' ? big : small;
+  
+  // Weighted random - favor middle numbers slightly
+  const weights = side === 'BIG' ? [0.15, 0.2, 0.3, 0.2, 0.15] : [0.15, 0.2, 0.3, 0.2, 0.15];
+  const random = Math.random();
+  let cumulative = 0;
+  
+  for (let i = 0; i < pool.length; i++) {
+    cumulative += weights[i];
+    if (random < cumulative) {
+      return pool[i];
+    }
+  }
+  
   return pool[Math.floor(Math.random() * pool.length)];
 }
 
