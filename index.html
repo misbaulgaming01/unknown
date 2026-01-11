@@ -2,26 +2,34 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>ITACHIIXT V1</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+  <title>ITACHIIXT V2</title>
+  <meta name="theme-color" content="#0ea5e9"/>
+  <meta name="description" content="ITACHIIXT - Advanced Prediction Platform with AI Technology"/>
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
   <style>
     *{margin:0;padding:0;box-sizing:border-box;}
     
     :root {
-      --primary: #00bfff;
+      --primary: #0ea5e9;
       --secondary: #10b981;
       --accent: #a855f7;
       --success: #22c55e;
       --destructive: #ef4444;
-      --bg-start: #0c1929;
-      --bg-mid: #1e3a5f;
+      --pending: #f59e0b;
+      --bg-start: #e0f2fe;
+      --bg-mid: #f0fdf4;
+      --bg-end: #faf5ff;
+      --glass-bg: rgba(255,255,255,0.7);
+      --glass-border: rgba(255,255,255,0.8);
+      --text-primary: #1e293b;
+      --text-secondary: #64748b;
     }
     
     body{
       font-family:'Poppins',sans-serif;
-      background:linear-gradient(135deg,var(--bg-start) 0%,var(--bg-mid) 50%,var(--bg-start) 100%);
-      color:#fff;
+      background:linear-gradient(135deg,var(--bg-start) 0%,var(--bg-mid) 50%,var(--bg-end) 100%);
+      color:var(--text-primary);
       min-height:100vh;
       display:flex;
       justify-content:center;
@@ -32,30 +40,32 @@
     }
     
     .bubbles{position:fixed;top:0;left:0;width:100%;height:100%;overflow:hidden;z-index:0;pointer-events:none;}
-    .bubbles span{position:absolute;bottom:-150px;border-radius:50%;animation:rise 25s infinite ease-in;opacity:0.6;}
-    .bubbles span:nth-child(1){width:60px;height:60px;left:5%;animation-duration:18s;background:radial-gradient(circle,rgba(0,191,255,0.5),rgba(0,191,255,0.2));}
-    .bubbles span:nth-child(2){width:60px;height:60px;left:15%;animation-duration:22s;background:radial-gradient(circle,rgba(16,185,129,0.6),rgba(16,185,129,0.2));}
-    .bubbles span:nth-child(3){width:60px;height:60px;left:35%;animation-duration:26s;background:radial-gradient(circle,rgba(168,85,247,0.6),rgba(168,85,247,0.2));}
-    .bubbles span:nth-child(4){width:60px;height:60px;left:55%;animation-duration:20s;background:radial-gradient(circle,rgba(34,211,238,0.5),rgba(34,211,238,0.2));}
-    .bubbles span:nth-child(5){width:60px;height:60px;left:75%;animation-duration:24s;background:radial-gradient(circle,rgba(59,130,246,0.5),rgba(59,130,246,0.2));}
-    .bubbles span:nth-child(6){width:60px;height:60px;left:85%;animation-duration:30s;background:radial-gradient(circle,rgba(52,211,153,0.6),rgba(52,211,153,0.2));}
-    @keyframes rise{0%{transform:translateY(0) scale(1);opacity:0.6;}100%{transform:translateY(-110vh) scale(1.5);opacity:0;}}
+    .bubbles span{position:absolute;bottom:-150px;border-radius:50%;animation:rise 25s infinite ease-in;opacity:0.5;}
+    .bubbles span:nth-child(1){width:60px;height:60px;left:5%;animation-duration:18s;background:radial-gradient(circle,rgba(14,165,233,0.4),rgba(14,165,233,0.1));}
+    .bubbles span:nth-child(2){width:60px;height:60px;left:20%;animation-duration:22s;animation-delay:2s;background:radial-gradient(circle,rgba(16,185,129,0.4),rgba(16,185,129,0.1));}
+    .bubbles span:nth-child(3){width:60px;height:60px;left:35%;animation-duration:26s;animation-delay:4s;background:radial-gradient(circle,rgba(168,85,247,0.4),rgba(168,85,247,0.1));}
+    .bubbles span:nth-child(4){width:60px;height:60px;left:50%;animation-duration:20s;animation-delay:1s;background:radial-gradient(circle,rgba(34,211,238,0.4),rgba(34,211,238,0.1));}
+    .bubbles span:nth-child(5){width:60px;height:60px;left:65%;animation-duration:24s;animation-delay:3s;background:radial-gradient(circle,rgba(59,130,246,0.4),rgba(59,130,246,0.1));}
+    .bubbles span:nth-child(6){width:60px;height:60px;left:80%;animation-duration:30s;animation-delay:5s;background:radial-gradient(circle,rgba(52,211,153,0.4),rgba(52,211,153,0.1));}
+    @keyframes rise{0%{transform:translateY(0) scale(1);opacity:0.5;}100%{transform:translateY(-110vh) scale(1.5);opacity:0;}}
     
     .container{width:100%;max-width:500px;position:relative;z-index:2;}
-    .glass{background:rgba(255,255,255,0.1);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border:1px solid rgba(255,255,255,0.2);border-radius:24px;box-shadow:0 8px 32px rgba(0,0,0,0.3);}
+    .glass{background:var(--glass-bg);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border:1px solid var(--glass-border);border-radius:24px;box-shadow:0 8px 32px rgba(0,0,0,0.1);}
+    
+    .gradient-text{background:linear-gradient(135deg,var(--primary),var(--secondary));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
     
     .login-container{display:flex;align-items:center;justify-content:center;min-height:100vh;width:100%;}
     .login-box{width:100%;max-width:400px;padding:32px;}
-    .login-title{font-size:1.8rem;font-weight:bold;text-align:center;margin-bottom:8px;background:linear-gradient(135deg,var(--primary),var(--secondary));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
-    .login-subtitle{text-align:center;color:rgba(255,255,255,0.6);font-size:0.9rem;margin-bottom:32px;}
-    .login-input{width:100%;padding:16px;background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.2);border-radius:16px;color:#fff;font-size:1.1rem;text-align:center;letter-spacing:4px;outline:none;transition:all 0.3s;}
-    .login-input::placeholder{color:rgba(255,255,255,0.4);letter-spacing:normal;}
-    .login-input:focus{border-color:var(--primary);box-shadow:0 0 20px rgba(0,191,255,0.3);}
+    .login-title{font-size:1.8rem;font-weight:bold;text-align:center;margin-bottom:8px;}
+    .login-subtitle{text-align:center;color:var(--text-secondary);font-size:0.9rem;margin-bottom:32px;}
+    .login-input{width:100%;padding:16px;background:rgba(255,255,255,0.5);border:1px solid rgba(255,255,255,0.6);border-radius:16px;color:var(--text-primary);font-size:1.1rem;text-align:center;letter-spacing:4px;outline:none;transition:all 0.3s;}
+    .login-input::placeholder{color:var(--text-secondary);letter-spacing:normal;}
+    .login-input:focus{border-color:var(--primary);box-shadow:0 0 20px rgba(14,165,233,0.3);}
     .login-btn{width:100%;padding:16px;margin-top:24px;border:none;border-radius:50px;font-size:1.1rem;font-weight:bold;color:#fff;background:linear-gradient(135deg,var(--primary),var(--secondary));cursor:pointer;transition:all 0.3s;display:flex;align-items:center;justify-content:center;gap:8px;}
     .login-btn:hover{opacity:0.9;transform:scale(1.02);}
     .login-btn:disabled{opacity:0.5;cursor:not-allowed;}
-    .login-footer{text-align:center;font-size:0.75rem;color:rgba(255,255,255,0.5);margin-top:24px;}
-    .login-error{color:#ef4444;text-align:center;font-size:0.85rem;margin-top:12px;}
+    .login-footer{text-align:center;font-size:0.75rem;color:var(--text-secondary);margin-top:24px;}
+    .login-error{color:var(--destructive);text-align:center;font-size:0.85rem;margin-top:12px;}
     
     .telegram-btn{width:100%;padding:14px;margin-top:16px;border:none;border-radius:50px;font-size:1rem;font-weight:bold;color:#fff;background:linear-gradient(135deg,#0088cc,#00aced);cursor:pointer;transition:all 0.3s;display:flex;align-items:center;justify-content:center;gap:10px;text-decoration:none;}
     .telegram-btn:hover{opacity:0.9;transform:scale(1.02);}
@@ -63,87 +73,81 @@
     
     .dashboard{display:none;}
     .header{text-align:center;padding:20px;margin-bottom:20px;position:relative;}
-    .header h1{font-size:clamp(1.2rem,5vw,1.5rem);font-weight:bold;background:linear-gradient(135deg,var(--primary),var(--secondary));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+    .header h1{font-family:'Orbitron',sans-serif;font-size:clamp(1.2rem,5vw,1.5rem);font-weight:bold;}
     .header-btns{position:absolute;right:16px;top:50%;transform:translateY(-50%);display:flex;gap:8px;}
     .header-btns-left{position:absolute;left:16px;top:50%;transform:translateY(-50%);display:flex;gap:8px;}
-    .icon-btn{background:rgba(255,255,255,0.1);border:none;padding:8px 12px;border-radius:50%;cursor:pointer;color:#fff;transition:all 0.3s;font-size:1rem;width:40px;height:40px;display:flex;align-items:center;justify-content:center;}
-    .icon-btn:hover{background:rgba(255,255,255,0.2);}
+    .icon-btn{background:rgba(255,255,255,0.5);border:none;padding:8px 12px;border-radius:50%;cursor:pointer;color:var(--text-primary);transition:all 0.3s;font-size:1rem;width:40px;height:40px;display:flex;align-items:center;justify-content:center;}
+    .icon-btn:hover{background:rgba(255,255,255,0.7);}
     .icon-btn svg{width:20px;height:20px;}
     
     .top-bar{display:flex;justify-content:space-between;align-items:center;padding:16px 20px;margin-bottom:20px;}
-    .period-box{font-size:clamp(0.8rem,3vw,1rem);font-weight:600;color:rgba(255,255,255,0.9);}
+    .period-box{font-size:clamp(0.8rem,3vw,1rem);font-weight:600;color:var(--text-secondary);}
     .timer-box{font-family:'Orbitron',sans-serif;font-size:clamp(1.5rem,6vw,2rem);font-weight:bold;color:var(--secondary);}
     
     .stats-section{padding:16px 20px;margin-bottom:20px;}
     .stats-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;text-align:center;}
     .stat-item{display:flex;flex-direction:column;}
-    .stat-label{font-size:0.65rem;color:rgba(255,255,255,0.6);margin-bottom:4px;}
-    .stat-value{font-family:'Orbitron',sans-serif;font-size:1rem;font-weight:bold;}
-    .stat-value.total{color:#fff;}
-    .stat-value.win{color:var(--success);text-shadow:0 0 10px rgba(34,197,94,0.5);}
-    .stat-value.loss{color:var(--destructive);text-shadow:0 0 10px rgba(239,68,68,0.5);}
-    .stat-value.numwin{color:var(--accent);text-shadow:0 0 10px rgba(168,85,247,0.5);}
-    .stat-value.rate{color:var(--primary);text-shadow:0 0 10px rgba(0,191,255,0.5);}
+    .stat-label{font-size:0.6rem;color:var(--text-secondary);margin-bottom:4px;}
+    .stat-value{font-family:'Orbitron',sans-serif;font-size:0.9rem;font-weight:bold;}
+    .stat-value.total{color:var(--text-primary);}
+    .stat-value.win{color:var(--success);text-shadow:0 0 10px rgba(34,197,94,0.3);}
+    .stat-value.loss{color:var(--destructive);text-shadow:0 0 10px rgba(239,68,68,0.3);}
+    .stat-value.jackpot{color:var(--accent);text-shadow:0 0 10px rgba(168,85,247,0.3);}
+    .stat-value.rate{color:var(--primary);text-shadow:0 0 10px rgba(14,165,233,0.3);}
     
     .prediction-section{padding:24px;margin-bottom:20px;text-align:center;}
-    .prediction-label{font-size:0.9rem;color:rgba(255,255,255,0.7);margin-bottom:16px;}
+    .prediction-label{font-size:0.9rem;color:var(--text-secondary);margin-bottom:16px;}
     
     .bigtext-container{width:160px;height:160px;margin:0 auto 20px;position:relative;}
     .rainbow-border{position:absolute;inset:0;border-radius:50%;padding:4px;background:linear-gradient(90deg,#ff0000,#ff8000,#ffff00,#80ff00,#00ff00,#00ff80,#00ffff,#0080ff,#0000ff,#8000ff,#ff00ff,#ff0080,#ff0000);background-size:400% 400%;animation:rainbow 3s ease infinite;}
     @keyframes rainbow{0%{background-position:0% 50%;}50%{background-position:100% 50%;}100%{background-position:0% 50%;}}
     
-    .bigtext{width:100%;height:100%;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'Orbitron',sans-serif;font-size:clamp(3rem,10vw,4rem);font-weight:900;background:rgba(20,20,40,0.9);box-shadow:0 0 40px rgba(255,255,255,0.2);overflow:hidden;position:relative;}
-    .bigtext.big{color:var(--primary);text-shadow:0 0 30px rgba(0,191,255,0.8);}
-    .bigtext.small{color:var(--secondary);text-shadow:0 0 30px rgba(16,185,129,0.8);}
-    .bigtext .inner-bubble{position:absolute;border-radius:50%;background:rgba(255,255,255,0.2);animation:riseIn 8s infinite ease-in;}
+    .bigtext{width:100%;height:100%;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'Orbitron',sans-serif;font-size:clamp(3rem,10vw,4rem);font-weight:900;background:rgba(255,255,255,0.9);box-shadow:0 0 40px rgba(0,0,0,0.1);overflow:hidden;position:relative;}
+    .bigtext.big{color:var(--primary);text-shadow:0 0 30px rgba(14,165,233,0.5);}
+    .bigtext.small{color:var(--secondary);text-shadow:0 0 30px rgba(16,185,129,0.5);}
+    .bigtext .inner-bubble{position:absolute;border-radius:50%;background:rgba(14,165,233,0.15);animation:riseIn 8s infinite ease-in;}
     .bigtext .inner-bubble:nth-child(1){width:20px;height:20px;left:20%;bottom:-20px;animation-duration:6s;}
     .bigtext .inner-bubble:nth-child(2){width:25px;height:25px;left:50%;bottom:-25px;animation-duration:7s;}
     .bigtext .inner-bubble:nth-child(3){width:15px;height:15px;left:70%;bottom:-15px;animation-duration:5s;}
     @keyframes riseIn{0%{transform:translateY(0) scale(1);opacity:0.5;}100%{transform:translateY(-180px) scale(1.5);opacity:0;}}
     
-    .ball{width:50px;height:50px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'Orbitron',sans-serif;font-size:1.2rem;font-weight:bold;color:#fff;box-shadow:0 4px 15px rgba(0,0,0,0.3);}
-    .ball.small{width:32px;height:32px;font-size:0.9rem;}
-    .ball.large{width:96px;height:96px;font-size:2rem;}
+    .ball{width:48px;height:48px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'Orbitron',sans-serif;font-size:1.2rem;font-weight:bold;color:#fff;box-shadow:0 4px 15px rgba(0,0,0,0.2);}
+    .ball.small{width:32px;height:32px;font-size:0.85rem;}
+    .ball.large{width:80px;height:80px;font-size:1.8rem;}
     .ball.red{background:radial-gradient(circle at 30% 30%,#ff6b9d,#ff1493,#a0005a);}
     .ball.green{background:radial-gradient(circle at 30% 30%,#6bd36b,#22c55e,#006600);}
     .ball.purple{background:radial-gradient(circle at 30% 30%,#c4b5fd,#8b5cf6,#5b21b6);}
     
-    .choice-buttons{display:flex;gap:0;border-radius:50px;overflow:hidden;margin-top:20px;}
-    .choice-buttons button{flex:1;padding:16px 0;font-size:1.1rem;font-weight:bold;border:none;cursor:pointer;transition:all 0.3s;color:#fff;}
-    .choice-buttons .big-btn{background:linear-gradient(135deg,#f59e0b,#d97706);border-radius:50px 0 0 50px;}
-    .choice-buttons .small-btn{background:linear-gradient(135deg,#3b82f6,#2563eb);border-radius:0 50px 50px 0;}
-    .choice-buttons button:hover{opacity:0.85;transform:scale(1.02);}
+    .status-badge{padding:6px 12px;border-radius:50px;font-size:0.65rem;font-weight:bold;color:#fff;display:inline-flex;align-items:center;justify-content:center;}
+    .status-pending{background:linear-gradient(135deg,#f59e0b,#ea580c);animation:pulse 1.5s infinite;}
+    .status-victory{background:linear-gradient(135deg,#22c55e,#15803d);}
+    .status-defeat{background:linear-gradient(135deg,#ef4444,#b91c1c);}
+    .status-jackpot{background:linear-gradient(135deg,#a855f7,#7c3aed);}
     
-    .bottom-nav{position:fixed;bottom:0;left:0;right:0;z-index:100;background:rgba(255,255,255,0.1);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-top:1px solid rgba(255,255,255,0.2);border-radius:24px 24px 0 0;}
+    .bottom-nav{position:fixed;bottom:0;left:0;right:0;z-index:100;background:var(--glass-bg);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-top:1px solid var(--glass-border);border-radius:24px 24px 0 0;}
     .nav-container{display:flex;justify-content:space-around;padding:12px 20px;}
-    .nav-btn{display:flex;flex-direction:column;align-items:center;gap:4px;padding:8px 24px;border:none;background:transparent;color:rgba(255,255,255,0.5);cursor:pointer;border-radius:16px;transition:all 0.3s;}
-    .nav-btn.active{background:linear-gradient(135deg,rgba(0,191,255,0.2),rgba(16,185,129,0.2));color:#fff;}
-    .nav-btn:hover{background:rgba(255,255,255,0.1);}
+    .nav-btn{display:flex;flex-direction:column;align-items:center;gap:4px;padding:8px 24px;border:none;background:transparent;color:var(--text-secondary);cursor:pointer;border-radius:16px;transition:all 0.3s;}
+    .nav-btn.active{background:linear-gradient(135deg,rgba(14,165,233,0.2),rgba(16,185,129,0.2));color:var(--text-primary);}
+    .nav-btn:hover{background:rgba(255,255,255,0.5);}
     .nav-icon{font-size:1.2rem;}
     .nav-icon svg{width:24px;height:24px;}
     .nav-label{font-size:0.7rem;font-weight:600;}
     
     .history-page{display:none;}
     .history-section{padding:16px;}
-    .history-header{display:grid;grid-template-columns:1fr 1fr 1fr 1fr 1fr;gap:8px;padding:12px;font-size:0.7rem;font-weight:bold;background:rgba(255,255,255,0.25);border-radius:12px;margin-bottom:8px;text-align:center;}
-    .history-box{max-height:60vh;overflow-y:auto;}
-    .history-row{display:grid;grid-template-columns:1fr 1fr 1fr 1fr 1fr;gap:8px;padding:12px;font-size:0.8rem;background:rgba(255,255,255,0.15);border-radius:12px;margin-bottom:6px;align-items:center;text-align:center;animation:scaleIn 0.3s ease-out;}
-    .history-row .ball-container{display:flex;justify-content:center;align-items:center;gap:4px;}
-    .status-pending{color:#ffd700;font-weight:bold;animation:pulse 1.5s infinite;}
-    .status-win{color:var(--success);font-weight:bold;text-shadow:0 0 10px rgba(34,197,94,0.5);}
-    .status-loss{color:var(--destructive);font-weight:bold;text-shadow:0 0 10px rgba(239,68,68,0.5);}
+    .history-header{display:grid;grid-template-columns:1fr 1fr 1fr 1fr 1fr;gap:8px;padding:12px;font-size:0.6rem;font-weight:bold;background:rgba(255,255,255,0.5);border-radius:12px;margin-bottom:8px;text-align:center;color:var(--text-secondary);}
+    .history-box{max-height:50vh;overflow-y:auto;}
+    .history-row{display:grid;grid-template-columns:1fr 1fr 1fr 1fr 1fr;gap:8px;padding:12px;font-size:0.8rem;background:rgba(255,255,255,0.4);border-radius:12px;margin-bottom:6px;align-items:center;text-align:center;animation:scaleIn 0.3s ease-out;}
+    .history-row .ball-container{display:flex;justify-content:center;align-items:center;}
     @keyframes scaleIn{from{opacity:0;transform:scale(0.95);}to{opacity:1;transform:scale(1);}}
     @keyframes pulse{0%,100%{opacity:1;}50%{opacity:0.5;}}
     
-    .no-history{text-align:center;padding:40px;color:rgba(255,255,255,0.5);}
+    .no-history{text-align:center;padding:40px;color:var(--text-secondary);}
     
     ::-webkit-scrollbar{width:6px;}
-    ::-webkit-scrollbar-track{background:rgba(255,255,255,0.1);border-radius:3px;}
-    ::-webkit-scrollbar-thumb{background:rgba(255,255,255,0.3);border-radius:3px;}
+    ::-webkit-scrollbar-track{background:rgba(255,255,255,0.3);border-radius:3px;}
+    ::-webkit-scrollbar-thumb{background:rgba(14,165,233,0.4);border-radius:3px;}
     .hidden{display:none !important;}
-    
-    .spin{animation:spin 1s linear infinite;}
-    @keyframes spin{from{transform:rotate(0deg);}to{transform:rotate(360deg);}}
   </style>
 </head>
 <body>
@@ -154,7 +158,7 @@
   <!-- LOGIN PAGE -->
   <div id="loginPage" class="login-container">
     <div class="login-box glass">
-      <h1 class="login-title">ITACHIIXT</h1>
+      <h1 class="login-title gradient-text" style="font-family:'Orbitron',sans-serif;">ITACHIIXT</h1>
       <p class="login-subtitle">Enter your access key to continue</p>
       <form id="loginForm">
         <input type="text" id="keyInput" class="login-input" placeholder="ENTER KEY" autocomplete="off">
@@ -165,20 +169,19 @@
         </button>
       </form>
       
-      <!-- TELEGRAM BUTTON -->
       <a href="https://t.me/ITACHIIXT" target="_blank" rel="noopener noreferrer" class="telegram-btn">
         <svg viewBox="0 0 24 24" fill="currentColor"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>
-        GET NEW KEY - CONTACT US
+        TELEGRAM
       </a>
       
-      <p class="login-footer">TELEGRAM USERNAME BY TEAM - @ITACHIIXT</p>
+      <p class="login-footer">TELEGRAM USERNAME BY TEAM - ITACHIIXT</p>
     </div>
   </div>
 
   <!-- MAIN PAGE -->
   <div id="mainPage" class="container dashboard">
     <header class="header glass">
-      <h1>ITACHIIXT</h1>
+      <h1 class="gradient-text">ITACHIIXT</h1>
       <div class="header-btns">
         <button class="icon-btn" id="logoutBtn">
           <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18.36 6.64a9 9 0 1 1-12.73 0"/><line x1="12" x2="12" y1="2" y2="12"/></svg>
@@ -198,16 +201,16 @@
           <span class="stat-value total" id="totalCount">0</span>
         </div>
         <div class="stat-item">
-          <span class="stat-label">WIN</span>
+          <span class="stat-label">VICTORY</span>
           <span class="stat-value win" id="winCount">0</span>
         </div>
         <div class="stat-item">
-          <span class="stat-label">LOSE</span>
+          <span class="stat-label">DEFEAT</span>
           <span class="stat-value loss" id="lossCount">0</span>
         </div>
         <div class="stat-item">
           <span class="stat-label">JACKPOT</span>
-          <span class="stat-value numwin" id="numWinCount">0</span>
+          <span class="stat-value jackpot" id="jackpotCount">0</span>
         </div>
         <div class="stat-item">
           <span class="stat-label">WIN RATE</span>
@@ -233,11 +236,6 @@
       <div style="display:flex;justify-content:center;margin-bottom:20px;">
         <div id="numberCircle" class="ball large purple">5</div>
       </div>
-
-      <div class="choice-buttons">
-        <button class="big-btn">BG NO</button>
-        <button class="small-btn">SM NO</button>
-      </div>
     </section>
   </div>
 
@@ -249,7 +247,7 @@
           <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18"/><path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"/><path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"/><line x1="10" x2="10" y1="11" y2="17"/><line x1="14" x2="14" y1="11" y2="17"/></svg>
         </button>
       </div>
-      <h1>ITACHIIXT HISTORY</h1>
+      <h1 class="gradient-text">ITACHIIXT HISTORY</h1>
       <div class="header-btns">
         <button class="icon-btn" id="logoutBtn2">
           <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18.36 6.64a9 9 0 1 1-12.73 0"/><line x1="12" x2="12" y1="2" y2="12"/></svg>
@@ -264,16 +262,16 @@
           <span class="stat-value total" id="totalCount2">0</span>
         </div>
         <div class="stat-item">
-          <span class="stat-label">WIN</span>
+          <span class="stat-label">VICTORY</span>
           <span class="stat-value win" id="winCount2">0</span>
         </div>
         <div class="stat-item">
-          <span class="stat-label">LOSE</span>
+          <span class="stat-label">DEFEAT</span>
           <span class="stat-value loss" id="lossCount2">0</span>
         </div>
         <div class="stat-item">
           <span class="stat-label">JACKPOT</span>
-          <span class="stat-value numwin" id="numWinCount2">0</span>
+          <span class="stat-value jackpot" id="jackpotCount2">0</span>
         </div>
         <div class="stat-item">
           <span class="stat-label">WIN RATE</span>
@@ -313,43 +311,76 @@
   </nav>
 
 <script>
-// Firebase Configuration
 const FIREBASE_DATABASE_URL = 'https://shadow-93ea0-default-rtdb.firebaseio.com';
 const HISTORY_API = 'https://draw.ar-lottery01.com/WinGo/WinGo_1M/GetHistoryIssuePage.json';
 
 let historyData = [];
 let lastSavedPeriod = null;
 let currentPage = 'main';
-let processedPeriods = new Set();
 
-// Validate key against Firebase
+function generateDeviceId() {
+  const stored = localStorage.getItem('deviceId');
+  if (stored) return stored;
+  
+  const canvas = document.createElement('canvas');
+  const ctx = canvas.getContext('2d');
+  if (ctx) {
+    ctx.textBaseline = 'top';
+    ctx.font = '14px Arial';
+    ctx.fillText('device-fingerprint', 2, 2);
+  }
+  
+  const fingerprint = [
+    navigator.userAgent,
+    navigator.language,
+    screen.width,
+    screen.height,
+    screen.colorDepth,
+    new Date().getTimezoneOffset(),
+    canvas.toDataURL(),
+    navigator.hardwareConcurrency || 'unknown',
+  ].join('|');
+  
+  let hash = 0;
+  for (let i = 0; i < fingerprint.length; i++) {
+    const char = fingerprint.charCodeAt(i);
+    hash = ((hash << 5) - hash) + char;
+    hash = hash & hash;
+  }
+  
+  const deviceId = `DEV_${Math.abs(hash).toString(36).toUpperCase()}_${Date.now().toString(36).toUpperCase()}`;
+  localStorage.setItem('deviceId', deviceId);
+  return deviceId;
+}
+
 async function validateKey(inputKey) {
   try {
+    const deviceId = generateDeviceId();
     const response = await fetch(`${FIREBASE_DATABASE_URL}/keys.json`);
     const keys = await response.json();
     
-    if (!keys) {
-      return { valid: false, message: 'No keys found in database' };
-    }
+    if (!keys) return { valid: false, message: 'No keys found in database' };
     
     for (const keyId in keys) {
       const keyData = keys[keyId];
       
       if (keyData.key === inputKey || keyId === inputKey) {
-        if (keyData.isActive === false) {
-          return { valid: false, message: 'Key has been deactivated' };
-        }
+        if (keyData.isActive === false) return { valid: false, message: 'Key has been deactivated' };
         
         const expiresAt = keyData.expiresAt || keyData.expiry;
-        if (expiresAt) {
-          const now = Date.now();
-          if (now > expiresAt) {
-            return { valid: false, message: 'Key has expired' };
-          }
-          return { valid: true, expiresAt };
+        if (expiresAt && Date.now() > expiresAt) return { valid: false, message: 'Key has expired' };
+        
+        if (keyData.boundDevice) {
+          if (keyData.boundDevice !== deviceId) return { valid: false, message: 'Key is already bound to another device' };
+        } else {
+          await fetch(`${FIREBASE_DATABASE_URL}/keys/${keyId}.json`, {
+            method: 'PATCH',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ boundDevice: deviceId, boundAt: Date.now() })
+          });
         }
         
-        return { valid: true };
+        return { valid: true, expiresAt, keyId };
       }
     }
     
@@ -360,25 +391,15 @@ async function validateKey(inputKey) {
   }
 }
 
-// Check key validity with auto logout
 async function checkKeyValidity() {
   const storedKey = localStorage.getItem('userKey');
-  if (!storedKey) {
-    logout();
-    return false;
-  }
+  if (!storedKey) { logout(); return false; }
   
   const storedExpiry = localStorage.getItem('expiresAt');
-  if (storedExpiry && Date.now() > parseInt(storedExpiry, 10)) {
-    logout();
-    return false;
-  }
+  if (storedExpiry && Date.now() > parseInt(storedExpiry, 10)) { logout(); return false; }
   
   const result = await validateKey(storedKey);
-  if (!result.valid) {
-    logout();
-    return false;
-  }
+  if (!result.valid) { logout(); return false; }
   
   return true;
 }
@@ -386,11 +407,7 @@ async function checkKeyValidity() {
 function checkAuth() {
   const isLoggedIn = localStorage.getItem('isLoggedIn');
   if (isLoggedIn === 'true') {
-    checkKeyValidity().then(valid => {
-      if (valid) {
-        showDashboard();
-      }
-    });
+    checkKeyValidity().then(valid => { if (valid) showDashboard(); });
   }
 }
 
@@ -401,10 +418,7 @@ document.getElementById('loginForm').addEventListener('submit', async function(e
   const btnText = document.getElementById('loginBtnText');
   const errorDiv = document.getElementById('loginError');
   
-  if (!key) {
-    errorDiv.textContent = '* PLEASE ENTER A KEY *';
-    return;
-  }
+  if (!key) { errorDiv.textContent = '* PLEASE ENTER A KEY *'; return; }
   
   btnText.textContent = 'VERIFYING...';
   btn.disabled = true;
@@ -418,13 +432,10 @@ document.getElementById('loginForm').addEventListener('submit', async function(e
     localStorage.removeItem('side');
     localStorage.removeItem('num');
     historyData = [];
-    processedPeriods.clear();
     
     localStorage.setItem('isLoggedIn', 'true');
     localStorage.setItem('userKey', key);
-    if (result.expiresAt) {
-      localStorage.setItem('expiresAt', String(result.expiresAt));
-    }
+    if (result.expiresAt) localStorage.setItem('expiresAt', String(result.expiresAt));
     showDashboard();
   } else {
     errorDiv.textContent = `* ${result.message.toUpperCase()} *`;
@@ -450,31 +461,20 @@ document.getElementById('logoutBtn2').addEventListener('click', logout);
 document.getElementById('clearHistoryBtn').addEventListener('click', function() {
   historyData = [];
   localStorage.removeItem('historyData');
-  processedPeriods.clear();
   updateStats();
   renderHistory();
 });
 
-document.getElementById('navMain').addEventListener('click', function() {
-  switchPage('main');
-});
-
-document.getElementById('navHistory').addEventListener('click', function() {
-  switchPage('history');
-});
+document.getElementById('navMain').addEventListener('click', function() { switchPage('main'); });
+document.getElementById('navHistory').addEventListener('click', function() { switchPage('history'); });
 
 function switchPage(page) {
   currentPage = page;
-  
   document.getElementById('mainPage').style.display = page === 'main' ? 'block' : 'none';
   document.getElementById('historyPage').style.display = page === 'history' ? 'block' : 'none';
-  
   document.getElementById('navMain').classList.toggle('active', page === 'main');
   document.getElementById('navHistory').classList.toggle('active', page === 'history');
-  
-  if (page === 'history') {
-    renderHistory();
-  }
+  if (page === 'history') renderHistory();
 }
 
 function showDashboard() {
@@ -486,22 +486,13 @@ function showDashboard() {
 
 function initDashboard() {
   const saved = localStorage.getItem('historyData');
-  if (saved) {
-    historyData = JSON.parse(saved);
-    historyData.forEach(item => {
-      if (item.status !== 'PENDING') {
-        processedPeriods.add(item.period);
-      }
-    });
-  }
+  if (saved) historyData = JSON.parse(saved);
   
   lastSavedPeriod = localStorage.getItem('period');
   const savedSide = localStorage.getItem('side');
   const savedNum = localStorage.getItem('num');
   
-  if (lastSavedPeriod && savedSide && savedNum) {
-    updateUI(savedSide, parseInt(savedNum, 10));
-  }
+  if (lastSavedPeriod && savedSide && savedNum) updateUI(savedSide, parseInt(savedNum, 10));
   
   updateStats();
   
@@ -531,14 +522,15 @@ function getPeriod() {
 }
 
 function getBallClass(n) {
-  if ([2,4,6,8].includes(n)) return 'red';
-  if ([1,3,7,9].includes(n)) return 'green';
-  return 'purple';
+  if ([0, 5].includes(n)) return 'purple';
+  if ([2, 4, 6, 8].includes(n)) return 'red';
+  return 'green';
 }
 
 function getStatusClass(status) {
-  if (status === 'WIN') return 'status-win';
-  if (status === 'LOSS') return 'status-loss';
+  if (status === 'VICTORY') return 'status-victory';
+  if (status === 'DEFEAT') return 'status-defeat';
+  if (status === 'JACKPOT') return 'status-jackpot';
   return 'status-pending';
 }
 
@@ -546,16 +538,15 @@ function updateTimer() {
   const now = getIST();
   const sec = now.getSeconds();
   const remaining = 60 - sec;
-  
   document.getElementById('timer').textContent = String(remaining).padStart(2, '0');
   document.getElementById('period').textContent = getPeriod().slice(-5);
 }
 
 function updateStats() {
   const completed = historyData.filter(h => h.status !== 'PENDING');
-  const wins = historyData.filter(h => h.status === 'WIN').length;
-  const losses = historyData.filter(h => h.status === 'LOSS').length;
-  const jackpots = historyData.filter(h => h.numberWin === true).length;
+  const wins = historyData.filter(h => h.status === 'VICTORY').length;
+  const losses = historyData.filter(h => h.status === 'DEFEAT').length;
+  const jackpots = historyData.filter(h => h.status === 'JACKPOT').length;
   const total = completed.length;
   
   const effectiveWins = wins + jackpots;
@@ -564,13 +555,13 @@ function updateStats() {
   document.getElementById('totalCount').textContent = total;
   document.getElementById('winCount').textContent = wins;
   document.getElementById('lossCount').textContent = losses;
-  document.getElementById('numWinCount').textContent = jackpots;
+  document.getElementById('jackpotCount').textContent = jackpots;
   document.getElementById('winRate').textContent = winRate + '%';
   
   document.getElementById('totalCount2').textContent = total;
   document.getElementById('winCount2').textContent = wins;
   document.getElementById('lossCount2').textContent = losses;
-  document.getElementById('numWinCount2').textContent = jackpots;
+  document.getElementById('jackpotCount2').textContent = jackpots;
   document.getElementById('winRate2').textContent = winRate + '%';
 }
 
@@ -588,19 +579,15 @@ function renderHistory() {
     row.className = 'history-row';
     
     const resultHtml = item.actualNum !== undefined 
-      ? `<div class="ball-container">
-           <div class="ball small ${getBallClass(item.actualNum)}">${item.actualNum}</div>
-         </div>`
-      : '<span style="color:rgba(255,255,255,0.5)">--</span>';
+      ? `<div class="ball-container"><div class="ball small ${getBallClass(item.actualNum)}">${item.actualNum}</div></div>`
+      : '<span style="color:var(--text-secondary)">--</span>';
     
     row.innerHTML = `
       <div>${item.period.slice(-5)}</div>
-      <div>${item.predicted}</div>
-      <div class="ball-container">
-        <div class="ball small ${getBallClass(item.predictedNum)}">${item.predictedNum}</div>
-      </div>
+      <div style="font-weight:bold">${item.predicted}</div>
+      <div class="ball-container"><div class="ball small ${getBallClass(item.predictedNum)}">${item.predictedNum}</div></div>
       ${resultHtml}
-      <div class="${getStatusClass(item.status)}">${item.status}</div>
+      <div><span class="status-badge ${getStatusClass(item.status)}">${item.status}</span></div>
     `;
     box.appendChild(row);
   });
@@ -608,110 +595,55 @@ function renderHistory() {
   updateStats();
 }
 
-// AI PATTERN PREDICTION ENGINE
-function generateSmartPrediction() {
+async function generateSmartPrediction() {
   const completedHistory = historyData.filter(h => h.status !== 'PENDING' && h.actualNum !== undefined);
+  const recentNumbers = completedHistory.slice(0, 10).map(h => h.actualNum).filter(n => n !== undefined);
   
-  // Rule 1: Triple Same Breaker
-  if (completedHistory.length >= 3) {
-    const lastThree = completedHistory.slice(0, 3);
-    const lastThreeSides = lastThree.map(h => h.actualNum >= 5 ? 'BIG' : 'SMALL');
-    
+  let predictedSide = 'BIG';
+  let predictedNumber = 5;
+  
+  if (recentNumbers.length >= 3) {
+    const lastThreeSides = recentNumbers.slice(0, 3).map(n => n >= 5 ? 'BIG' : 'SMALL');
     if (lastThreeSides[0] === lastThreeSides[1] && lastThreeSides[1] === lastThreeSides[2]) {
-      const flippedSide = lastThreeSides[0] === 'BIG' ? 'SMALL' : 'BIG';
-      const number = generateNumberForSide(flippedSide);
-      return { side: flippedSide, number };
+      predictedSide = lastThreeSides[0] === 'BIG' ? 'SMALL' : 'BIG';
+    } else if (recentNumbers.length >= 4) {
+      const sides = recentNumbers.slice(0, 4).map(n => n >= 5 ? 'BIG' : 'SMALL');
+      if (sides[0] !== sides[1] && sides[1] !== sides[2] && sides[2] !== sides[3]) {
+        predictedSide = sides[0] === 'BIG' ? 'SMALL' : 'BIG';
+      }
+    } else {
+      const bigCount = recentNumbers.slice(0, 10).filter(n => n >= 5).length;
+      if (bigCount >= 7) predictedSide = 'SMALL';
+      else if (bigCount <= 3) predictedSide = 'BIG';
+      else {
+        const lastNum = recentNumbers[0];
+        predictedSide = lastNum >= 5 ? 'BIG' : 'SMALL';
+        if (Math.random() < 0.3) predictedSide = predictedSide === 'BIG' ? 'SMALL' : 'BIG';
+      }
     }
-  }
-  
-  // Rule 2: Two Loss Same Prediction Breaker
-  if (completedHistory.length >= 2) {
-    const lastTwo = completedHistory.slice(0, 2);
     
-    if (lastTwo[0].status === 'LOSS' && lastTwo[1].status === 'LOSS' &&
-        lastTwo[0].predicted === lastTwo[1].predicted) {
-      const flippedSide = lastTwo[0].predicted === 'BIG' ? 'SMALL' : 'BIG';
-      const number = generateNumberForSide(flippedSide);
-      return { side: flippedSide, number };
-    }
-  }
-  
-  // Rule 3: Alternating Pattern Detection
-  if (completedHistory.length >= 4) {
-    const lastFour = completedHistory.slice(0, 4);
-    const sides = lastFour.map(h => h.actualNum >= 5 ? 'BIG' : 'SMALL');
+    const numberCounts = {};
+    recentNumbers.forEach(n => { numberCounts[n] = (numberCounts[n] || 0) + 1; });
     
-    if (sides[0] !== sides[1] && sides[1] !== sides[2] && sides[2] !== sides[3]) {
-      const nextSide = sides[0] === 'BIG' ? 'SMALL' : 'BIG';
-      const number = generateNumberForSide(nextSide);
-      return { side: nextSide, number };
-    }
-  }
-  
-  // Rule 4: Frequency Analysis (last 10 results)
-  if (completedHistory.length >= 5) {
-    const lastTen = completedHistory.slice(0, Math.min(10, completedHistory.length));
-    const bigCount = lastTen.filter(h => h.actualNum >= 5).length;
-    const smallCount = lastTen.length - bigCount;
+    const pool = predictedSide === 'BIG' ? [5, 6, 7, 8, 9] : [0, 1, 2, 3, 4];
+    const sortedPool = pool.sort((a, b) => (numberCounts[a] || 0) - (numberCounts[b] || 0));
     
-    if (bigCount >= 7) {
-      const number = generateNumberForSide('SMALL');
-      return { side: 'SMALL', number };
+    const weights = [0.35, 0.25, 0.20, 0.12, 0.08];
+    const random = Math.random();
+    let cumulative = 0;
+    for (let i = 0; i < sortedPool.length; i++) {
+      cumulative += weights[i];
+      if (random < cumulative) { predictedNumber = sortedPool[i]; break; }
     }
-    if (smallCount >= 7) {
-      const number = generateNumberForSide('BIG');
-      return { side: 'BIG', number };
-    }
+  } else {
+    const now = getIST();
+    const minute = now.getMinutes();
+    predictedSide = minute % 2 === 0 ? 'BIG' : 'SMALL';
+    const pool = predictedSide === 'BIG' ? [5, 6, 7, 8, 9] : [0, 1, 2, 3, 4];
+    predictedNumber = pool[Math.floor(Math.random() * pool.length)];
   }
   
-  // Rule 5: Streak Following
-  if (completedHistory.length >= 2) {
-    const lastTwo = completedHistory.slice(0, 2);
-    if (lastTwo[0].status === 'WIN' && lastTwo[1].status === 'WIN') {
-      const lastActual = completedHistory[0].actualNum;
-      const side = lastActual >= 5 ? 'BIG' : 'SMALL';
-      const number = generateNumberForSide(side);
-      return { side, number };
-    }
-  }
-  
-  // Rule 6: Default with randomness
-  if (completedHistory.length >= 1) {
-    const lastActual = completedHistory[0].actualNum;
-    const baseSide = lastActual >= 5 ? 'BIG' : 'SMALL';
-    
-    const shouldFlip = Math.random() < 0.3;
-    const side = shouldFlip ? (baseSide === 'BIG' ? 'SMALL' : 'BIG') : baseSide;
-    const number = generateNumberForSide(side);
-    return { side, number };
-  }
-  
-  // Fallback
-  const now = getIST();
-  const minute = now.getMinutes();
-  const timeBias = (minute % 2 === 0) ? 0.55 : 0.45;
-  const side = Math.random() < timeBias ? 'BIG' : 'SMALL';
-  const number = generateNumberForSide(side);
-  return { side, number };
-}
-
-function generateNumberForSide(side) {
-  const big = [5, 6, 7, 8, 9];
-  const small = [0, 1, 2, 3, 4];
-  const pool = side === 'BIG' ? big : small;
-  
-  const weights = [0.15, 0.2, 0.3, 0.2, 0.15];
-  const random = Math.random();
-  let cumulative = 0;
-  
-  for (let i = 0; i < pool.length; i++) {
-    cumulative += weights[i];
-    if (random < cumulative) {
-      return pool[i];
-    }
-  }
-  
-  return pool[Math.floor(Math.random() * pool.length)];
+  return { side: predictedSide, number: predictedNumber };
 }
 
 function updateUI(side, num) {
@@ -746,13 +678,16 @@ async function checkResults() {
         if (result) {
           const actualNum = parseInt(result.number, 10);
           const actualSide = actualNum >= 5 ? 'BIG' : 'SMALL';
-          const isWin = item.predicted === actualSide;
-          const numberWin = item.predictedNum === actualNum;
+          const isNumberMatch = item.predictedNum === actualNum;
+          const isSideMatch = item.predicted === actualSide;
           updated = true;
           
-          processedPeriods.add(item.period);
+          let status;
+          if (isNumberMatch) status = 'JACKPOT';
+          else if (isSideMatch) status = 'VICTORY';
+          else status = 'DEFEAT';
           
-          return { ...item, actualNum, status: isWin ? 'WIN' : 'LOSS', numberWin };
+          return { ...item, actualNum, status };
         }
         
         return item;
@@ -761,9 +696,7 @@ async function checkResults() {
       if (updated) {
         localStorage.setItem('historyData', JSON.stringify(historyData));
         updateStats();
-        if (currentPage === 'history') {
-          renderHistory();
-        }
+        if (currentPage === 'history') renderHistory();
       }
     }
   } catch (error) {
@@ -771,11 +704,11 @@ async function checkResults() {
   }
 }
 
-function autoPredict() {
+async function autoPredict() {
   const currentPeriod = getPeriod();
   if (currentPeriod === lastSavedPeriod) return;
 
-  const p = generateSmartPrediction();
+  const p = await generateSmartPrediction();
   updateUI(p.side, p.number);
 
   const newEntry = {
