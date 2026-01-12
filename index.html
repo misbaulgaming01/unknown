@@ -5,7 +5,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
   <title>ITACHIIXT V2</title>
   <meta name="theme-color" content="#0ea5e9"/>
-  <meta name="description" content="ITACHIIXT - Advanced Prediction Platform with AI Technology"/>
+  <meta name="description" content="ITACHIIXT - Advanced Prediction Platform with AI Pattern-Based Technology"/>
+  <meta property="og:title" content="ITACHIIXT V2 - Advanced Prediction Platform"/>
+  <meta property="og:description" content="Advanced Prediction Platform with AI Pattern-Based Technology"/>
+  <meta property="og:type" content="website"/>
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
   <style>
     *{margin:0;padding:0;box-sizing:border-box;}
@@ -95,24 +98,50 @@
     .stat-value.jackpot{color:var(--accent);text-shadow:0 0 10px rgba(168,85,247,0.3);}
     .stat-value.rate{color:var(--primary);text-shadow:0 0 10px rgba(14,165,233,0.3);}
     
-    .prediction-section{padding:24px;margin-bottom:20px;text-align:center;}
+    .prediction-section{padding:24px;margin-bottom:20px;text-align:center;position:relative;overflow:hidden;}
+    .prediction-section::before{content:'';position:absolute;inset:0;opacity:0.15;z-index:0;}
+    .prediction-section.alpha::before{background:linear-gradient(135deg,#0ea5e9,#22d3ee);}
+    .prediction-section.beta::before{background:linear-gradient(135deg,#10b981,#34d399);}
+    .prediction-section.gamma::before{background:linear-gradient(135deg,#a855f7,#c084fc);}
+    .prediction-section>*{position:relative;z-index:1;}
     .prediction-label{font-size:0.9rem;color:var(--text-secondary);margin-bottom:16px;}
     
-    .bigtext-container{width:160px;height:160px;margin:0 auto 20px;position:relative;}
-    .rainbow-border{position:absolute;inset:0;border-radius:50%;padding:4px;background:linear-gradient(90deg,#ff0000,#ff8000,#ffff00,#80ff00,#00ff00,#00ff80,#00ffff,#0080ff,#0000ff,#8000ff,#ff00ff,#ff0080,#ff0000);background-size:400% 400%;animation:rainbow 3s ease infinite;}
+    .server-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:16px;}
+    .server-card{position:relative;padding:16px 8px;background:rgba(255,255,255,0.5);border:2px solid transparent;border-radius:16px;cursor:pointer;transition:all 0.3s;text-align:center;overflow:hidden;}
+    .server-card::before{content:'';position:absolute;inset:0;opacity:0;transition:opacity 0.3s;z-index:0;}
+    .server-card[data-server="server1"]::before{background:linear-gradient(135deg,rgba(14,165,233,0.15),rgba(34,211,238,0.15));}
+    .server-card[data-server="server2"]::before{background:linear-gradient(135deg,rgba(16,185,129,0.15),rgba(52,211,153,0.15));}
+    .server-card[data-server="server3"]::before{background:linear-gradient(135deg,rgba(168,85,247,0.15),rgba(192,132,252,0.15));}
+    .server-card>*{position:relative;z-index:1;}
+    .server-card:hover{background:rgba(255,255,255,0.7);}
+    .server-card:hover::before{opacity:1;}
+    .server-card.active{border-color:var(--primary);background:rgba(255,255,255,0.8);box-shadow:0 4px 20px rgba(14,165,233,0.2);}
+    .server-card.active::before{opacity:1;}
+    .server-card[data-server="server1"].active{border-color:#0ea5e9;}
+    .server-card[data-server="server2"].active{border-color:#10b981;}
+    .server-card[data-server="server3"].active{border-color:#a855f7;}
+    .server-icon{width:40px;height:40px;border-radius:50%;margin:0 auto 8px;display:flex;align-items:center;justify-content:center;color:#fff;}
+    .server-icon.alpha{background:linear-gradient(135deg,var(--primary),#22d3ee);}
+    .server-icon.beta{background:linear-gradient(135deg,var(--secondary),#34d399);}
+    .server-icon.gamma{background:linear-gradient(135deg,var(--accent),#c084fc);}
+    .server-name{font-family:'Orbitron',sans-serif;font-size:0.75rem;font-weight:bold;}
+    .server-active-dot{position:absolute;top:8px;right:8px;width:8px;height:8px;background:var(--primary);border-radius:50%;animation:pulse 1.5s infinite;}
+    .server-card[data-server="server1"] .server-active-dot{background:#0ea5e9;}
+    .server-card[data-server="server2"] .server-active-dot{background:#10b981;}
+    .server-card[data-server="server3"] .server-active-dot{background:#a855f7;}
+    
+    .prediction-balls{display:flex;justify-content:center;align-items:center;gap:16px;margin:24px 0;}
+    
+    .side-ball-container{width:80px;height:80px;position:relative;}
+    .rainbow-border{position:absolute;inset:0;border-radius:50%;padding:3px;background:linear-gradient(90deg,#ff0000,#ff8000,#ffff00,#80ff00,#00ff00,#00ff80,#00ffff,#0080ff,#0000ff,#8000ff,#ff00ff,#ff0080,#ff0000);background-size:400% 400%;animation:rainbow 3s ease infinite;}
     @keyframes rainbow{0%{background-position:0% 50%;}50%{background-position:100% 50%;}100%{background-position:0% 50%;}}
     
-    .bigtext{width:100%;height:100%;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'Orbitron',sans-serif;font-size:clamp(3rem,10vw,4rem);font-weight:900;background:rgba(255,255,255,0.9);box-shadow:0 0 40px rgba(0,0,0,0.1);overflow:hidden;position:relative;}
-    .bigtext.big{color:var(--primary);text-shadow:0 0 30px rgba(14,165,233,0.5);}
-    .bigtext.small{color:var(--secondary);text-shadow:0 0 30px rgba(16,185,129,0.5);}
-    .bigtext .inner-bubble{position:absolute;border-radius:50%;background:rgba(14,165,233,0.15);animation:riseIn 8s infinite ease-in;}
-    .bigtext .inner-bubble:nth-child(1){width:20px;height:20px;left:20%;bottom:-20px;animation-duration:6s;}
-    .bigtext .inner-bubble:nth-child(2){width:25px;height:25px;left:50%;bottom:-25px;animation-duration:7s;}
-    .bigtext .inner-bubble:nth-child(3){width:15px;height:15px;left:70%;bottom:-15px;animation-duration:5s;}
-    @keyframes riseIn{0%{transform:translateY(0) scale(1);opacity:0.5;}100%{transform:translateY(-180px) scale(1.5);opacity:0;}}
+    .side-ball{width:100%;height:100%;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'Orbitron',sans-serif;font-size:2rem;font-weight:900;background:rgba(255,255,255,0.9);box-shadow:0 0 30px rgba(0,0,0,0.1);overflow:hidden;position:relative;}
+    .side-ball.big{color:var(--primary);text-shadow:0 0 20px rgba(14,165,233,0.5);}
+    .side-ball.small{color:var(--secondary);text-shadow:0 0 20px rgba(16,185,129,0.5);}
     
-    .ball{width:48px;height:48px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'Orbitron',sans-serif;font-size:1.2rem;font-weight:bold;color:#fff;box-shadow:0 4px 15px rgba(0,0,0,0.2);}
-    .ball.small{width:32px;height:32px;font-size:0.85rem;}
+    .ball{width:48px;height:48px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'Orbitron',sans-serif;font-size:1.2rem;font-weight:bold;color:#fff;box-shadow:0 4px 15px rgba(0,0,0,0.2);transition:transform 0.3s;}
+    .ball.small-size{width:32px;height:32px;font-size:0.85rem;}
     .ball.large{width:80px;height:80px;font-size:1.8rem;}
     .ball.red{background:radial-gradient(circle at 30% 30%,#ff6b9d,#ff1493,#a0005a);}
     .ball.green{background:radial-gradient(circle at 30% 30%,#6bd36b,#22c55e,#006600);}
@@ -219,22 +248,40 @@
       </div>
     </section>
 
-    <section class="prediction-section glass">
-      <p class="prediction-label">ITACHIIXT TECHNOLOGY - PLATFORM</p>
-
-      <div class="bigtext-container">
-        <div class="rainbow-border">
-          <div id="prediction" class="bigtext big">
-            <span class="inner-bubble"></span>
-            <span class="inner-bubble"></span>
-            <span class="inner-bubble"></span>
-            <span class="text">B</span>
+    <section id="predictionSection" class="prediction-section glass alpha">
+      <div class="server-grid" id="serverGrid">
+        <div class="server-card active" data-server="server1">
+          <div class="server-active-dot" id="dot1"></div>
+          <div class="server-icon alpha">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect width="20" height="8" x="2" y="2" rx="2" ry="2"/><rect width="20" height="8" x="2" y="14" rx="2" ry="2"/><line x1="6" x2="6.01" y1="6" y2="6"/><line x1="6" x2="6.01" y1="18" y2="18"/></svg>
           </div>
+          <p class="server-name">SMART - AI</p>
+        </div>
+        <div class="server-card" data-server="server2">
+          <div class="server-active-dot hidden" id="dot2"></div>
+          <div class="server-icon beta">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 4.5a2.5 2.5 0 0 0-4.96-.46 2.5 2.5 0 0 0-1.98 3 2.5 2.5 0 0 0 1.32 4.24 3 3 0 0 0 .34 5.58 2.5 2.5 0 0 0 2.96 3.08A2.5 2.5 0 0 0 12 19.5a2.5 2.5 0 0 0 2.32.64 2.5 2.5 0 0 0 2.96-3.08 3 3 0 0 0 .34-5.58 2.5 2.5 0 0 0 1.32-4.24 2.5 2.5 0 0 0-1.98-3A2.5 2.5 0 0 0 12 4.5"/><path d="m15.7 10.4-.9.4"/><path d="m9.2 13.2-.9.4"/><path d="m13.6 15.7-.4-.9"/><path d="m10.8 9.2-.4-.9"/><path d="m15.7 13.5-.9-.4"/><path d="m9.2 10.8-.9-.4"/><path d="m10.4 15.7.4-.9"/><path d="m13.2 9.2.4-.9"/></svg>
+          </div>
+          <p class="server-name">MAXIMUM</p>
+        </div>
+        <div class="server-card" data-server="server3">
+          <div class="server-active-dot hidden" id="dot3"></div>
+          <div class="server-icon gamma">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 14a1 1 0 0 1-.78-1.63l9.9-10.2a.5.5 0 0 1 .86.46l-1.92 6.02A1 1 0 0 0 13 10h7a1 1 0 0 1 .78 1.63l-9.9 10.2a.5.5 0 0 1-.86-.46l1.92-6.02A1 1 0 0 0 11 14z"/></svg>
+          </div>
+          <p class="server-name">AI - BASED</p>
         </div>
       </div>
 
-      <div style="display:flex;justify-content:center;margin-bottom:20px;">
-        <div id="numberCircle" class="ball large purple">5</div>
+      <p class="prediction-label"><span id="serverLabel">SMART - AI</span> SERVER - PREDICTION</p>
+
+      <div class="prediction-balls">
+        <div class="side-ball-container">
+          <div class="rainbow-border">
+            <div id="sideBall" class="side-ball big">B</div>
+          </div>
+        </div>
+        <div id="numberBall" class="ball large purple">5</div>
       </div>
     </section>
   </div>
@@ -254,31 +301,6 @@
         </button>
       </div>
     </header>
-
-    <section class="stats-section glass">
-      <div class="stats-grid">
-        <div class="stat-item">
-          <span class="stat-label">TOTAL</span>
-          <span class="stat-value total" id="totalCount2">0</span>
-        </div>
-        <div class="stat-item">
-          <span class="stat-label">VICTORY</span>
-          <span class="stat-value win" id="winCount2">0</span>
-        </div>
-        <div class="stat-item">
-          <span class="stat-label">DEFEAT</span>
-          <span class="stat-value loss" id="lossCount2">0</span>
-        </div>
-        <div class="stat-item">
-          <span class="stat-label">JACKPOT</span>
-          <span class="stat-value jackpot" id="jackpotCount2">0</span>
-        </div>
-        <div class="stat-item">
-          <span class="stat-label">WIN RATE</span>
-          <span class="stat-value rate" id="winRate2">0.0%</span>
-        </div>
-      </div>
-    </section>
 
     <section class="history-section glass">
       <div class="history-header">
@@ -317,6 +339,9 @@ const HISTORY_API = 'https://draw.ar-lottery01.com/WinGo/WinGo_1M/GetHistoryIssu
 let historyData = [];
 let lastSavedPeriod = null;
 let currentPage = 'main';
+let selectedServer = 'server1';
+
+const serverNames = { server1: 'SMART - AI', server2: 'MAXIMUM', server3: 'AI - BASED' };
 
 function generateDeviceId() {
   const stored = localStorage.getItem('deviceId');
@@ -392,10 +417,10 @@ async function validateKey(inputKey) {
 }
 
 async function checkKeyValidity() {
-  const storedKey = localStorage.getItem('userKey');
+  const storedKey = sessionStorage.getItem('userKey');
   if (!storedKey) { logout(); return false; }
   
-  const storedExpiry = localStorage.getItem('expiresAt');
+  const storedExpiry = sessionStorage.getItem('expiresAt');
   if (storedExpiry && Date.now() > parseInt(storedExpiry, 10)) { logout(); return false; }
   
   const result = await validateKey(storedKey);
@@ -405,7 +430,7 @@ async function checkKeyValidity() {
 }
 
 function checkAuth() {
-  const isLoggedIn = localStorage.getItem('isLoggedIn');
+  const isLoggedIn = sessionStorage.getItem('isLoggedIn');
   if (isLoggedIn === 'true') {
     checkKeyValidity().then(valid => { if (valid) showDashboard(); });
   }
@@ -433,9 +458,9 @@ document.getElementById('loginForm').addEventListener('submit', async function(e
     localStorage.removeItem('num');
     historyData = [];
     
-    localStorage.setItem('isLoggedIn', 'true');
-    localStorage.setItem('userKey', key);
-    if (result.expiresAt) localStorage.setItem('expiresAt', String(result.expiresAt));
+    sessionStorage.setItem('isLoggedIn', 'true');
+    sessionStorage.setItem('userKey', key);
+    if (result.expiresAt) sessionStorage.setItem('expiresAt', String(result.expiresAt));
     showDashboard();
   } else {
     errorDiv.textContent = `* ${result.message.toUpperCase()} *`;
@@ -445,9 +470,9 @@ document.getElementById('loginForm').addEventListener('submit', async function(e
 });
 
 function logout() {
-  localStorage.removeItem('isLoggedIn');
-  localStorage.removeItem('userKey');
-  localStorage.removeItem('expiresAt');
+  sessionStorage.removeItem('isLoggedIn');
+  sessionStorage.removeItem('userKey');
+  sessionStorage.removeItem('expiresAt');
   localStorage.removeItem('historyData');
   localStorage.removeItem('period');
   localStorage.removeItem('side');
@@ -457,12 +482,37 @@ function logout() {
 
 document.getElementById('logoutBtn').addEventListener('click', logout);
 document.getElementById('logoutBtn2').addEventListener('click', logout);
-
 document.getElementById('clearHistoryBtn').addEventListener('click', function() {
   historyData = [];
   localStorage.removeItem('historyData');
   updateStats();
   renderHistory();
+});
+
+function updatePredictionSectionBg() {
+  const section = document.getElementById('predictionSection');
+  section.classList.remove('alpha', 'beta', 'gamma');
+  if (selectedServer === 'server1') section.classList.add('alpha');
+  else if (selectedServer === 'server2') section.classList.add('beta');
+  else section.classList.add('gamma');
+}
+
+document.querySelectorAll('.server-card').forEach(card => {
+  card.addEventListener('click', function() {
+    const serverId = this.dataset.server;
+    selectedServer = serverId;
+    localStorage.setItem('selectedServer', serverId);
+    
+    document.querySelectorAll('.server-card').forEach(c => c.classList.remove('active'));
+    this.classList.add('active');
+    
+    document.getElementById('dot1').classList.toggle('hidden', serverId !== 'server1');
+    document.getElementById('dot2').classList.toggle('hidden', serverId !== 'server2');
+    document.getElementById('dot3').classList.toggle('hidden', serverId !== 'server3');
+    
+    document.getElementById('serverLabel').textContent = serverNames[serverId];
+    updatePredictionSectionBg();
+  });
 });
 
 document.getElementById('navMain').addEventListener('click', function() { switchPage('main'); });
@@ -481,6 +531,17 @@ function showDashboard() {
   document.getElementById('loginPage').classList.add('hidden');
   document.getElementById('mainPage').style.display = 'block';
   document.getElementById('bottomNav').classList.remove('hidden');
+  
+  selectedServer = localStorage.getItem('selectedServer') || 'server1';
+  document.querySelectorAll('.server-card').forEach(c => {
+    c.classList.toggle('active', c.dataset.server === selectedServer);
+  });
+  document.getElementById('dot1').classList.toggle('hidden', selectedServer !== 'server1');
+  document.getElementById('dot2').classList.toggle('hidden', selectedServer !== 'server2');
+  document.getElementById('dot3').classList.toggle('hidden', selectedServer !== 'server3');
+  document.getElementById('serverLabel').textContent = serverNames[selectedServer];
+  updatePredictionSectionBg();
+  
   initDashboard();
 }
 
@@ -557,12 +618,6 @@ function updateStats() {
   document.getElementById('lossCount').textContent = losses;
   document.getElementById('jackpotCount').textContent = jackpots;
   document.getElementById('winRate').textContent = winRate + '%';
-  
-  document.getElementById('totalCount2').textContent = total;
-  document.getElementById('winCount2').textContent = wins;
-  document.getElementById('lossCount2').textContent = losses;
-  document.getElementById('jackpotCount2').textContent = jackpots;
-  document.getElementById('winRate2').textContent = winRate + '%';
 }
 
 function renderHistory() {
@@ -579,13 +634,13 @@ function renderHistory() {
     row.className = 'history-row';
     
     const resultHtml = item.actualNum !== undefined 
-      ? `<div class="ball-container"><div class="ball small ${getBallClass(item.actualNum)}">${item.actualNum}</div></div>`
+      ? `<div class="ball-container"><div class="ball small-size ${getBallClass(item.actualNum)}">${item.actualNum}</div></div>`
       : '<span style="color:var(--text-secondary)">--</span>';
     
     row.innerHTML = `
       <div>${item.period.slice(-5)}</div>
       <div style="font-weight:bold">${item.predicted}</div>
-      <div class="ball-container"><div class="ball small ${getBallClass(item.predictedNum)}">${item.predictedNum}</div></div>
+      <div class="ball-container"><div class="ball small-size ${getBallClass(item.predictedNum)}">${item.predictedNum}</div></div>
       ${resultHtml}
       <div><span class="status-badge ${getStatusClass(item.status)}">${item.status}</span></div>
     `;
@@ -595,70 +650,210 @@ function renderHistory() {
   updateStats();
 }
 
-async function generateSmartPrediction() {
-  const completedHistory = historyData.filter(h => h.status !== 'PENDING' && h.actualNum !== undefined);
-  const recentNumbers = completedHistory.slice(0, 10).map(h => h.actualNum).filter(n => n !== undefined);
+// SMART-AI LOGIC: AI pattern random Big/Small number prediction
+function alphaLogic(recentNumbers, completedHistory) {
+  const recentSides = recentNumbers.map(n => n >= 5 ? 'BIG' : 'SMALL');
   
   let predictedSide = 'BIG';
-  let predictedNumber = 5;
   
-  if (recentNumbers.length >= 3) {
-    const lastThreeSides = recentNumbers.slice(0, 3).map(n => n >= 5 ? 'BIG' : 'SMALL');
-    if (lastThreeSides[0] === lastThreeSides[1] && lastThreeSides[1] === lastThreeSides[2]) {
-      predictedSide = lastThreeSides[0] === 'BIG' ? 'SMALL' : 'BIG';
-    } else if (recentNumbers.length >= 4) {
-      const sides = recentNumbers.slice(0, 4).map(n => n >= 5 ? 'BIG' : 'SMALL');
-      if (sides[0] !== sides[1] && sides[1] !== sides[2] && sides[2] !== sides[3]) {
-        predictedSide = sides[0] === 'BIG' ? 'SMALL' : 'BIG';
-      }
-    } else {
-      const bigCount = recentNumbers.slice(0, 10).filter(n => n >= 5).length;
-      if (bigCount >= 7) predictedSide = 'SMALL';
-      else if (bigCount <= 3) predictedSide = 'BIG';
-      else {
-        const lastNum = recentNumbers[0];
-        predictedSide = lastNum >= 5 ? 'BIG' : 'SMALL';
-        if (Math.random() < 0.3) predictedSide = predictedSide === 'BIG' ? 'SMALL' : 'BIG';
-      }
-    }
-    
-    const numberCounts = {};
-    recentNumbers.forEach(n => { numberCounts[n] = (numberCounts[n] || 0) + 1; });
-    
-    const pool = predictedSide === 'BIG' ? [5, 6, 7, 8, 9] : [0, 1, 2, 3, 4];
-    const sortedPool = pool.sort((a, b) => (numberCounts[a] || 0) - (numberCounts[b] || 0));
-    
-    const weights = [0.35, 0.25, 0.20, 0.12, 0.08];
-    const random = Math.random();
-    let cumulative = 0;
-    for (let i = 0; i < sortedPool.length; i++) {
-      cumulative += weights[i];
-      if (random < cumulative) { predictedNumber = sortedPool[i]; break; }
-    }
+  const bigCount = recentNumbers.slice(0, 8).filter(n => n >= 5).length;
+  const smallCount = 8 - bigCount;
+  const shortTrend = recentNumbers.slice(0, 3).reduce((acc, n) => acc + (n >= 5 ? 1 : -1), 0);
+  const longTrend = recentNumbers.slice(0, 8).reduce((acc, n) => acc + (n >= 5 ? 1 : -1), 0);
+  
+  let patternScore = 0;
+  
+  // Pattern detection: 3 consecutive same sides trigger reversal
+  if (recentSides.length >= 3 && recentSides[0] === recentSides[1] && recentSides[1] === recentSides[2]) {
+    patternScore += recentSides[0] === 'BIG' ? -3 : 3;
+  }
+  
+  // Balance correction based on recent distribution
+  if (bigCount > 5) patternScore -= (bigCount - 5);
+  if (smallCount > 5) patternScore += (smallCount - 5);
+  patternScore += shortTrend * 0.5;
+  
+  // AI enhancement factor
+  patternScore *= 1.2;
+  if (longTrend > 2) patternScore -= 2;
+  if (longTrend < -2) patternScore += 2;
+  
+  // Randomization for unpredictability
+  const randomFactor = (Math.random() - 0.5) * 2;
+  patternScore += randomFactor;
+  
+  if (patternScore > 1.5) {
+    predictedSide = 'BIG';
+  } else if (patternScore < -1.5) {
+    predictedSide = 'SMALL';
   } else {
-    const now = getIST();
-    const minute = now.getMinutes();
-    predictedSide = minute % 2 === 0 ? 'BIG' : 'SMALL';
-    const pool = predictedSide === 'BIG' ? [5, 6, 7, 8, 9] : [0, 1, 2, 3, 4];
-    predictedNumber = pool[Math.floor(Math.random() * pool.length)];
+    predictedSide = recentSides[0] || 'BIG';
+  }
+  
+  // Weighted number selection - prefer less frequent numbers
+  const pool = predictedSide === 'BIG' ? [5, 6, 7, 8, 9] : [0, 1, 2, 3, 4];
+  const numberCounts = {};
+  recentNumbers.forEach(n => { numberCounts[n] = (numberCounts[n] || 0) + 1; });
+  const sortedPool = pool.sort((a, b) => (numberCounts[a] || 0) - (numberCounts[b] || 0));
+  
+  const weights = [0.35, 0.25, 0.20, 0.12, 0.08];
+  const random = Math.random();
+  let cumulative = 0;
+  let predictedNumber = sortedPool[0];
+  
+  for (let i = 0; i < sortedPool.length; i++) {
+    cumulative += weights[i];
+    if (random < cumulative) { 
+      predictedNumber = sortedPool[i]; 
+      break; 
+    }
   }
   
   return { side: predictedSide, number: predictedNumber };
 }
 
-function updateUI(side, num) {
-  const pred = document.getElementById('prediction');
-  pred.className = `bigtext ${side === 'BIG' ? 'big' : 'small'}`;
-  pred.innerHTML = `
-    <span class="inner-bubble"></span>
-    <span class="inner-bubble"></span>
-    <span class="inner-bubble"></span>
-    <span class="text">${side === 'BIG' ? 'B' : 'S'}</span>
-  `;
+// MAXIMUM LOGIC: AI pattern random Big/Small number Engine prediction
+function betaLogic(recentNumbers, completedHistory) {
+  const recentSides = recentNumbers.map(n => n >= 5 ? 'BIG' : 'SMALL');
+  const recentResults = completedHistory.slice(0, 5);
+  const lastActualSide = recentSides[0] || 'BIG';
+  
+  let predictedSide = lastActualSide;
+  let breakerTriggered = false;
+  
+  // Engine pattern breaker: 3 consecutive triggers reversal
+  if (recentSides.length >= 3) {
+    const lastThree = recentSides.slice(0, 3);
+    if (lastThree.every(s => s === lastThree[0])) {
+      predictedSide = lastThree[0] === 'BIG' ? 'SMALL' : 'BIG';
+      breakerTriggered = true;
+    }
+  }
+  
+  // Loss streak recovery mechanism
+  if (!breakerTriggered && recentResults.length >= 2) {
+    const lastTwo = recentResults.slice(0, 2);
+    if (lastTwo[0].status === 'DEFEAT' && lastTwo[1].status === 'DEFEAT' && 
+        lastTwo[0].predicted === lastTwo[1].predicted) {
+      predictedSide = lastTwo[0].predicted === 'BIG' ? 'SMALL' : 'BIG';
+      breakerTriggered = true;
+    }
+  }
+  
+  if (!breakerTriggered) {
+    predictedSide = lastActualSide;
+  }
+  
+  // Engine number selection with balanced weights
+  const pool = predictedSide === 'BIG' ? [5, 6, 7, 8, 9] : [0, 1, 2, 3, 4];
+  const numberCounts = {};
+  recentNumbers.forEach(n => { numberCounts[n] = (numberCounts[n] || 0) + 1; });
+  const sortedPool = pool.sort((a, b) => (numberCounts[a] || 0) - (numberCounts[b] || 0));
+  
+  const weights = [0.30, 0.28, 0.22, 0.12, 0.08];
+  const random = Math.random();
+  let cumulative = 0;
+  let predictedNumber = sortedPool[0];
+  
+  for (let i = 0; i < sortedPool.length; i++) {
+    cumulative += weights[i];
+    if (random < cumulative) { 
+      predictedNumber = sortedPool[i]; 
+      break; 
+    }
+  }
+  
+  return { side: predictedSide, number: predictedNumber };
+}
 
-  const numberCircle = document.getElementById('numberCircle');
-  numberCircle.textContent = num;
-  numberCircle.className = `ball large ${getBallClass(num)}`;
+// AI-BASED LOGIC: API pattern based prediction
+function gammaLogic(recentNumbers, completedHistory) {
+  const recentSides = recentNumbers.map(n => n >= 5 ? 'BIG' : 'SMALL');
+  const recentResults = completedHistory.slice(0, 5);
+  const lastActualSide = recentSides[0] || 'BIG';
+  
+  let predictedSide = lastActualSide;
+  let breakerTriggered = false;
+  
+  // API pattern: 4 consecutive triggers reversal (more conservative)
+  if (recentSides.length >= 4) {
+    const lastFour = recentSides.slice(0, 4);
+    if (lastFour.every(s => s === lastFour[0])) {
+      predictedSide = lastFour[0] === 'BIG' ? 'SMALL' : 'BIG';
+      breakerTriggered = true;
+    }
+  }
+  
+  // API loss recovery pattern
+  if (!breakerTriggered && recentResults.length >= 2) {
+    const lastTwo = recentResults.slice(0, 2);
+    if (lastTwo[0].status === 'DEFEAT' && lastTwo[1].status === 'DEFEAT' && 
+        lastTwo[0].predicted === lastTwo[1].predicted) {
+      predictedSide = lastTwo[0].predicted === 'BIG' ? 'SMALL' : 'BIG';
+      breakerTriggered = true;
+    }
+  }
+  
+  if (!breakerTriggered) {
+    predictedSide = lastActualSide;
+  }
+  
+  // API-based number selection
+  const pool = predictedSide === 'BIG' ? [5, 6, 7, 8, 9] : [0, 1, 2, 3, 4];
+  const numberCounts = {};
+  recentNumbers.forEach(n => { numberCounts[n] = (numberCounts[n] || 0) + 1; });
+  const sortedPool = pool.sort((a, b) => (numberCounts[a] || 0) - (numberCounts[b] || 0));
+  
+  const weights = [0.32, 0.26, 0.21, 0.13, 0.08];
+  const random = Math.random();
+  let cumulative = 0;
+  let predictedNumber = sortedPool[0];
+  
+  for (let i = 0; i < sortedPool.length; i++) {
+    cumulative += weights[i];
+    if (random < cumulative) { 
+      predictedNumber = sortedPool[i]; 
+      break; 
+    }
+  }
+  
+  return { side: predictedSide, number: predictedNumber };
+}
+
+async function generateSmartPrediction() {
+  const completedHistory = historyData.filter(h => h.status !== 'PENDING' && h.actualNum !== undefined);
+  const recentNumbers = completedHistory.slice(0, 10).map(h => h.actualNum).filter(n => n !== undefined);
+  
+  // Fallback for insufficient data
+  if (recentNumbers.length < 2) {
+    const now = getIST();
+    const minute = now.getMinutes();
+    const serverSeed = selectedServer === 'server1' ? 0 : selectedServer === 'server2' ? 1 : 2;
+    const side = (minute + serverSeed) % 2 === 0 ? 'BIG' : 'SMALL';
+    const pool = side === 'BIG' ? [5, 6, 7, 8, 9] : [0, 1, 2, 3, 4];
+    return { side, number: pool[Math.floor(Math.random() * pool.length)] };
+  }
+  
+  switch (selectedServer) {
+    case 'server1':
+      return alphaLogic(recentNumbers, completedHistory);
+    case 'server2':
+      return betaLogic(recentNumbers, completedHistory);
+    case 'server3':
+      return gammaLogic(recentNumbers, completedHistory);
+    default:
+      return alphaLogic(recentNumbers, completedHistory);
+  }
+}
+
+function updateUI(side, num) {
+  const sideBall = document.getElementById('sideBall');
+  sideBall.className = `side-ball ${side === 'BIG' ? 'big' : 'small'}`;
+  sideBall.textContent = side === 'BIG' ? 'B' : 'S';
+
+  const numberBall = document.getElementById('numberBall');
+  numberBall.textContent = num;
+  numberBall.className = `ball large ${getBallClass(num)}`;
 }
 
 async function checkResults() {
@@ -715,7 +910,8 @@ async function autoPredict() {
     period: currentPeriod,
     predicted: p.side,
     predictedNum: p.number,
-    status: 'PENDING'
+    status: 'PENDING',
+    server: selectedServer
   };
   
   historyData.unshift(newEntry);
