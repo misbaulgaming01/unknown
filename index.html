@@ -569,7 +569,6 @@ function initDashboard() {
   checkResults();
 }
 
-// UTC-based time functions
 function getPeriod() {
   const utc = new Date();
   const y = utc.getUTCFullYear();
@@ -661,10 +660,9 @@ function renderHistory() {
   updateStats();
 }
 
-// SMART-AI LOGIC (Pattern-based)
+// SMART-AI LOGIC
 function alphaLogic(recentNumbers, completedHistory) {
   const recentSides = recentNumbers.map(n => n >= 5 ? 'BIG' : 'SMALL');
-  
   let predictedSide = 'BIG';
   
   const bigCount = recentNumbers.slice(0, 8).filter(n => n >= 5).length;
@@ -681,7 +679,6 @@ function alphaLogic(recentNumbers, completedHistory) {
   if (bigCount > 5) patternScore -= (bigCount - 5);
   if (smallCount > 5) patternScore += (smallCount - 5);
   patternScore += shortTrend * 0.5;
-  
   patternScore *= 1.2;
   if (longTrend > 2) patternScore -= 2;
   if (longTrend < -2) patternScore += 2;
@@ -689,13 +686,9 @@ function alphaLogic(recentNumbers, completedHistory) {
   const randomFactor = (Math.random() - 0.5) * 2;
   patternScore += randomFactor;
   
-  if (patternScore > 1.5) {
-    predictedSide = 'BIG';
-  } else if (patternScore < -1.5) {
-    predictedSide = 'SMALL';
-  } else {
-    predictedSide = recentSides[0] || 'BIG';
-  }
+  if (patternScore > 1.5) predictedSide = 'BIG';
+  else if (patternScore < -1.5) predictedSide = 'SMALL';
+  else predictedSide = recentSides[0] || 'BIG';
   
   const pool = predictedSide === 'BIG' ? [5, 6, 7, 8, 9] : [0, 1, 2, 3, 4];
   const numberCounts = {};
@@ -709,16 +702,13 @@ function alphaLogic(recentNumbers, completedHistory) {
   
   for (let i = 0; i < sortedPool.length; i++) {
     cumulative += weights[i];
-    if (random < cumulative) { 
-      predictedNumber = sortedPool[i]; 
-      break; 
-    }
+    if (random < cumulative) { predictedNumber = sortedPool[i]; break; }
   }
   
   return { side: predictedSide, number: predictedNumber };
 }
 
-// MAXIMUM LOGIC (Pattern-based)
+// MAXIMUM LOGIC
 function betaLogic(recentNumbers, completedHistory) {
   const recentSides = recentNumbers.map(n => n >= 5 ? 'BIG' : 'SMALL');
   const recentResults = completedHistory.slice(0, 5);
@@ -744,9 +734,7 @@ function betaLogic(recentNumbers, completedHistory) {
     }
   }
   
-  if (!breakerTriggered) {
-    predictedSide = lastActualSide;
-  }
+  if (!breakerTriggered) predictedSide = lastActualSide;
   
   const pool = predictedSide === 'BIG' ? [5, 6, 7, 8, 9] : [0, 1, 2, 3, 4];
   const numberCounts = {};
@@ -760,16 +748,13 @@ function betaLogic(recentNumbers, completedHistory) {
   
   for (let i = 0; i < sortedPool.length; i++) {
     cumulative += weights[i];
-    if (random < cumulative) { 
-      predictedNumber = sortedPool[i]; 
-      break; 
-    }
+    if (random < cumulative) { predictedNumber = sortedPool[i]; break; }
   }
   
   return { side: predictedSide, number: predictedNumber };
 }
 
-// AI-BASED LOGIC (Pattern-based)
+// AI-BASED LOGIC
 function gammaLogic(recentNumbers, completedHistory) {
   const recentSides = recentNumbers.map(n => n >= 5 ? 'BIG' : 'SMALL');
   const recentResults = completedHistory.slice(0, 5);
@@ -795,9 +780,7 @@ function gammaLogic(recentNumbers, completedHistory) {
     }
   }
   
-  if (!breakerTriggered) {
-    predictedSide = lastActualSide;
-  }
+  if (!breakerTriggered) predictedSide = lastActualSide;
   
   const pool = predictedSide === 'BIG' ? [5, 6, 7, 8, 9] : [0, 1, 2, 3, 4];
   const numberCounts = {};
@@ -811,10 +794,7 @@ function gammaLogic(recentNumbers, completedHistory) {
   
   for (let i = 0; i < sortedPool.length; i++) {
     cumulative += weights[i];
-    if (random < cumulative) { 
-      predictedNumber = sortedPool[i]; 
-      break; 
-    }
+    if (random < cumulative) { predictedNumber = sortedPool[i]; break; }
   }
   
   return { side: predictedSide, number: predictedNumber };
@@ -834,14 +814,10 @@ async function generateSmartPrediction() {
   }
   
   switch (selectedServer) {
-    case 'server1':
-      return alphaLogic(recentNumbers, completedHistory);
-    case 'server2':
-      return betaLogic(recentNumbers, completedHistory);
-    case 'server3':
-      return gammaLogic(recentNumbers, completedHistory);
-    default:
-      return alphaLogic(recentNumbers, completedHistory);
+    case 'server1': return alphaLogic(recentNumbers, completedHistory);
+    case 'server2': return betaLogic(recentNumbers, completedHistory);
+    case 'server3': return gammaLogic(recentNumbers, completedHistory);
+    default: return alphaLogic(recentNumbers, completedHistory);
   }
 }
 
