@@ -29,16 +29,6 @@
       --text-secondary: #64748b;
     }
     
-    .dark {
-      --bg-start: #0f172a;
-      --bg-mid: #1e293b;
-      --bg-end: #1e1b4b;
-      --glass-bg: rgba(30,41,59,0.8);
-      --glass-border: rgba(51,65,85,0.6);
-      --text-primary: #f1f5f9;
-      --text-secondary: #94a3b8;
-    }
-    
     body{
       font-family:'Poppins',sans-serif;
       background:linear-gradient(135deg,var(--bg-start) 0%,var(--bg-mid) 50%,var(--bg-end) 100%);
@@ -73,7 +63,6 @@
     .login-title{font-size:1.8rem;font-weight:bold;text-align:center;margin-bottom:8px;}
     .login-subtitle{text-align:center;color:var(--text-secondary);font-size:0.9rem;margin-bottom:32px;}
     .login-input{width:100%;padding:16px;background:rgba(255,255,255,0.5);border:1px solid rgba(255,255,255,0.6);border-radius:16px;color:var(--text-primary);font-size:1.1rem;text-align:center;letter-spacing:4px;outline:none;transition:all 0.3s;}
-    .dark .login-input{background:rgba(255,255,255,0.1);border-color:rgba(255,255,255,0.2);}
     .login-input::placeholder{color:var(--text-secondary);letter-spacing:normal;}
     .login-input:focus{border-color:var(--primary);box-shadow:0 0 20px rgba(14,165,233,0.3);}
     .login-btn{width:100%;padding:16px;margin-top:24px;border:none;border-radius:50px;font-size:1.1rem;font-weight:bold;color:#fff;background:linear-gradient(135deg,var(--primary),var(--secondary));cursor:pointer;transition:all 0.3s;display:flex;align-items:center;justify-content:center;gap:8px;}
@@ -92,9 +81,7 @@
     .header-btns{position:absolute;right:16px;top:50%;transform:translateY(-50%);display:flex;gap:8px;}
     .header-btns-left{position:absolute;left:16px;top:50%;transform:translateY(-50%);display:flex;gap:8px;}
     .icon-btn{background:rgba(255,255,255,0.5);border:none;padding:8px 12px;border-radius:50%;cursor:pointer;color:var(--text-primary);transition:all 0.3s;font-size:1rem;width:40px;height:40px;display:flex;align-items:center;justify-content:center;}
-    .dark .icon-btn{background:rgba(255,255,255,0.1);}
     .icon-btn:hover{background:rgba(255,255,255,0.7);}
-    .dark .icon-btn:hover{background:rgba(255,255,255,0.2);}
     .icon-btn svg{width:20px;height:20px;}
     
     .top-bar{display:flex;justify-content:space-between;align-items:center;padding:16px 20px;margin-bottom:20px;}
@@ -122,17 +109,14 @@
     
     .server-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:16px;}
     .server-card{position:relative;padding:16px 8px;background:rgba(255,255,255,0.5);border:2px solid transparent;border-radius:16px;cursor:pointer;transition:all 0.3s;text-align:center;overflow:hidden;}
-    .dark .server-card{background:rgba(255,255,255,0.05);}
     .server-card::before{content:'';position:absolute;inset:0;opacity:0;transition:opacity 0.3s;z-index:0;}
     .server-card[data-server="server1"]::before{background:linear-gradient(135deg,rgba(14,165,233,0.15),rgba(34,211,238,0.15));}
     .server-card[data-server="server2"]::before{background:linear-gradient(135deg,rgba(16,185,129,0.15),rgba(52,211,153,0.15));}
     .server-card[data-server="server3"]::before{background:linear-gradient(135deg,rgba(168,85,247,0.15),rgba(192,132,252,0.15));}
     .server-card>*{position:relative;z-index:1;}
     .server-card:hover{background:rgba(255,255,255,0.7);}
-    .dark .server-card:hover{background:rgba(255,255,255,0.1);}
     .server-card:hover::before{opacity:1;}
     .server-card.active{border-color:var(--primary);background:rgba(255,255,255,0.8);box-shadow:0 4px 20px rgba(14,165,233,0.2);}
-    .dark .server-card.active{background:rgba(255,255,255,0.1);}
     .server-card.active::before{opacity:1;}
     .server-card[data-server="server1"].active{border-color:#0ea5e9;}
     .server-card[data-server="server2"].active{border-color:#10b981;}
@@ -154,7 +138,6 @@
     @keyframes rainbow{0%{background-position:0% 50%;}50%{background-position:100% 50%;}100%{background-position:0% 50%;}}
     
     .side-ball{width:100%;height:100%;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'Orbitron',sans-serif;font-size:2rem;font-weight:900;background:rgba(255,255,255,0.9);box-shadow:0 0 30px rgba(0,0,0,0.1);overflow:hidden;position:relative;}
-    .dark .side-ball{background:rgba(30,41,59,0.9);}
     .side-ball.big{color:var(--primary);text-shadow:0 0 20px rgba(14,165,233,0.5);}
     .side-ball.small{color:var(--secondary);text-shadow:0 0 20px rgba(16,185,129,0.5);}
     
@@ -176,7 +159,6 @@
     .nav-btn{display:flex;flex-direction:column;align-items:center;gap:4px;padding:8px 24px;border:none;background:transparent;color:var(--text-secondary);cursor:pointer;border-radius:16px;transition:all 0.3s;}
     .nav-btn.active{background:linear-gradient(135deg,rgba(14,165,233,0.2),rgba(16,185,129,0.2));color:var(--text-primary);}
     .nav-btn:hover{background:rgba(255,255,255,0.5);}
-    .dark .nav-btn:hover{background:rgba(255,255,255,0.1);}
     .nav-icon{font-size:1.2rem;}
     .nav-icon svg{width:24px;height:24px;}
     .nav-label{font-size:0.7rem;font-weight:600;}
@@ -184,7 +166,6 @@
     .history-page{display:none;}
     .history-section{padding:16px;}
     .history-header{display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:8px;padding:12px;font-size:0.6rem;font-weight:bold;background:rgba(255,255,255,0.5);border-radius:12px;margin-bottom:8px;text-align:center;color:var(--text-secondary);}
-    .dark .history-header{background:rgba(255,255,255,0.05);}
     .history-box{display:flex;flex-direction:column;gap:6px;}
     .history-row{position:relative;display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:8px;padding:12px;font-size:0.8rem;border-radius:12px;align-items:center;text-align:center;animation:scaleIn 0.3s ease-out;overflow:hidden;}
     .history-row .row-content{position:relative;z-index:10;}
@@ -232,12 +213,6 @@
   <!-- MAIN PAGE -->
   <div id="mainPage" class="container dashboard">
     <header class="header glass">
-      <div class="header-btns-left">
-        <button class="icon-btn" id="darkModeBtn" title="Toggle Dark Mode">
-          <svg id="sunIcon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="hidden"><circle cx="12" cy="12" r="4"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="m4.93 4.93 1.41 1.41"/><path d="m17.66 17.66 1.41 1.41"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="m6.34 17.66-1.41 1.41"/><path d="m19.07 4.93-1.41 1.41"/></svg>
-          <svg id="moonIcon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg>
-        </button>
-      </div>
       <h1 class="gradient-text">ITACHIIXT</h1>
       <div class="header-btns">
         <button class="icon-btn" id="logoutBtn">
@@ -367,26 +342,8 @@ let historyData = [];
 let lastSavedPeriod = null;
 let currentPage = 'main';
 let selectedServer = 'server1';
-let isDarkMode = localStorage.getItem('darkMode') === 'true';
 
 const serverNames = { server1: 'SMART - AI', server2: 'MAXIMUM', server3: 'AI - BASED' };
-
-// Apply dark mode on load
-if (isDarkMode) {
-  document.body.classList.add('dark');
-  document.getElementById('sunIcon').classList.remove('hidden');
-  document.getElementById('moonIcon').classList.add('hidden');
-}
-
-function toggleDarkMode() {
-  isDarkMode = !isDarkMode;
-  localStorage.setItem('darkMode', isDarkMode);
-  document.body.classList.toggle('dark', isDarkMode);
-  document.getElementById('sunIcon').classList.toggle('hidden', !isDarkMode);
-  document.getElementById('moonIcon').classList.toggle('hidden', isDarkMode);
-}
-
-document.getElementById('darkModeBtn').addEventListener('click', toggleDarkMode);
 
 function generateDeviceId() {
   const stored = localStorage.getItem('deviceId');
@@ -612,19 +569,19 @@ function initDashboard() {
   checkResults();
 }
 
-function getIST() {
-  const n = new Date();
-  const u = n.getTime() + n.getTimezoneOffset() * 60000;
-  return new Date(u + 5.5 * 3600000);
+// UTC-based time functions
+function getPeriod() {
+  const utc = new Date();
+  const y = utc.getUTCFullYear();
+  const m = String(utc.getUTCMonth() + 1).padStart(2, '0');
+  const dd = String(utc.getUTCDate()).padStart(2, '0');
+  const totalMinutes = utc.getUTCHours() * 60 + utc.getUTCMinutes();
+  return `${y}${m}${dd}1000${10001 + totalMinutes}`;
 }
 
-function getPeriod() {
-  const ist = getIST();
-  const y = ist.getFullYear();
-  const m = String(ist.getMonth() + 1).padStart(2, '0');
-  const dd = String(ist.getDate()).padStart(2, '0');
-  const minutes = ist.getHours() * 60 + ist.getMinutes();
-  return String(y) + m + dd + "1000" + (10001 + minutes - 330);
+function getRemainingSeconds() {
+  const utc = new Date();
+  return 60 - utc.getUTCSeconds();
 }
 
 function getBallClass(n) {
@@ -653,9 +610,7 @@ function getStatusClass(status) {
 }
 
 function updateTimer() {
-  const now = getIST();
-  const sec = now.getSeconds();
-  const remaining = 60 - sec;
+  const remaining = getRemainingSeconds();
   document.getElementById('timer').textContent = String(remaining).padStart(2, '0');
   document.getElementById('period').textContent = getPeriod().slice(-5);
 }
@@ -681,7 +636,6 @@ function renderHistory() {
   const box = document.getElementById('historyBox');
   box.innerHTML = '';
   
-  // Only show 12 items - no scroll
   const displayData = historyData.slice(0, 12);
   
   if (displayData.length === 0) {
@@ -707,7 +661,7 @@ function renderHistory() {
   updateStats();
 }
 
-// SMART-AI LOGIC
+// SMART-AI LOGIC (Pattern-based)
 function alphaLogic(recentNumbers, completedHistory) {
   const recentSides = recentNumbers.map(n => n >= 5 ? 'BIG' : 'SMALL');
   
@@ -764,7 +718,7 @@ function alphaLogic(recentNumbers, completedHistory) {
   return { side: predictedSide, number: predictedNumber };
 }
 
-// MAXIMUM LOGIC
+// MAXIMUM LOGIC (Pattern-based)
 function betaLogic(recentNumbers, completedHistory) {
   const recentSides = recentNumbers.map(n => n >= 5 ? 'BIG' : 'SMALL');
   const recentResults = completedHistory.slice(0, 5);
@@ -815,7 +769,7 @@ function betaLogic(recentNumbers, completedHistory) {
   return { side: predictedSide, number: predictedNumber };
 }
 
-// AI-BASED LOGIC
+// AI-BASED LOGIC (Pattern-based)
 function gammaLogic(recentNumbers, completedHistory) {
   const recentSides = recentNumbers.map(n => n >= 5 ? 'BIG' : 'SMALL');
   const recentResults = completedHistory.slice(0, 5);
@@ -871,8 +825,8 @@ async function generateSmartPrediction() {
   const recentNumbers = completedHistory.slice(0, 10).map(h => h.actualNum).filter(n => n !== undefined);
   
   if (recentNumbers.length < 2) {
-    const now = getIST();
-    const minute = now.getMinutes();
+    const now = new Date();
+    const minute = now.getUTCMinutes();
     const serverSeed = selectedServer === 'server1' ? 0 : selectedServer === 'server2' ? 1 : 2;
     const side = (minute + serverSeed) % 2 === 0 ? 'BIG' : 'SMALL';
     const pool = side === 'BIG' ? [5, 6, 7, 8, 9] : [0, 1, 2, 3, 4];
