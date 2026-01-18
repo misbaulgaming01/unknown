@@ -660,7 +660,7 @@ function renderHistory() {
   updateStats();
 }
 
-// SMART-AI LOGIC
+// SMART-AI LOGIC (Server 1)
 function alphaLogic(recentNumbers, completedHistory) {
   const recentSides = recentNumbers.map(n => n >= 5 ? 'BIG' : 'SMALL');
   let predictedSide = 'BIG';
@@ -708,7 +708,7 @@ function alphaLogic(recentNumbers, completedHistory) {
   return { side: predictedSide, number: predictedNumber };
 }
 
-// MAXIMUM LOGIC
+// MAXIMUM LOGIC (Server 2)
 function betaLogic(recentNumbers, completedHistory) {
   const recentSides = recentNumbers.map(n => n >= 5 ? 'BIG' : 'SMALL');
   const recentResults = completedHistory.slice(0, 5);
@@ -754,7 +754,7 @@ function betaLogic(recentNumbers, completedHistory) {
   return { side: predictedSide, number: predictedNumber };
 }
 
-// AI-BASED LOGIC
+// AI-BASED LOGIC (Server 3)
 function gammaLogic(recentNumbers, completedHistory) {
   const recentSides = recentNumbers.map(n => n >= 5 ? 'BIG' : 'SMALL');
   const recentResults = completedHistory.slice(0, 5);
