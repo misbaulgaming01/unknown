@@ -2,519 +2,299 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
-  <title>ITACHIIXT</title>
-  <meta name="theme-color" content="#0ea5e9"/>
-  <meta name="description" content="ITACHIIXT - Advanced Prediction Platform with AI Pattern-Based Technology"/>
-  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>ITACHIIXT - Key Management</title>
+  <meta name="description" content="ITACHI MAXIMUM - Premium Key Management System"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
   <style>
-    *{margin:0;padding:0;box-sizing:border-box;}
-    :root{--primary:#0ea5e9;--secondary:#10b981;--accent:#a855f7;--success:#22c55e;--destructive:#ef4444;--pending:#f59e0b;--bg-start:#e0f2fe;--bg-mid:#f0fdf4;--bg-end:#faf5ff;--glass-bg:rgba(255,255,255,0.7);--glass-border:rgba(255,255,255,0.8);--text-primary:#1e293b;--text-secondary:#64748b;}
-    body{font-family:'Poppins',sans-serif;background:linear-gradient(135deg,var(--bg-start) 0%,var(--bg-mid) 50%,var(--bg-end) 100%);color:var(--text-primary);min-height:100vh;display:flex;justify-content:center;align-items:flex-start;padding:20px;overflow-x:hidden;}
-    .bubbles{position:fixed;top:0;left:0;width:100%;height:100%;overflow:hidden;z-index:0;pointer-events:none;}
-    .bubbles span{position:absolute;bottom:-150px;border-radius:50%;animation:rise 25s infinite ease-in;opacity:0.5;width:60px;height:60px;}
-    .bubbles span:nth-child(1){left:5%;animation-duration:18s;background:radial-gradient(circle,rgba(14,165,233,0.4),rgba(14,165,233,0.1));}
-    .bubbles span:nth-child(2){left:20%;animation-duration:22s;animation-delay:2s;background:radial-gradient(circle,rgba(16,185,129,0.4),rgba(16,185,129,0.1));}
-    .bubbles span:nth-child(3){left:35%;animation-duration:26s;animation-delay:4s;background:radial-gradient(circle,rgba(168,85,247,0.4),rgba(168,85,247,0.1));}
-    .bubbles span:nth-child(4){left:50%;animation-duration:20s;animation-delay:1s;background:radial-gradient(circle,rgba(34,211,238,0.4),rgba(34,211,238,0.1));}
-    .bubbles span:nth-child(5){left:65%;animation-duration:24s;animation-delay:3s;background:radial-gradient(circle,rgba(59,130,246,0.4),rgba(59,130,246,0.1));}
-    .bubbles span:nth-child(6){left:80%;animation-duration:30s;animation-delay:5s;background:radial-gradient(circle,rgba(52,211,153,0.4),rgba(52,211,153,0.1));}
-    @keyframes rise{0%{transform:translateY(0) scale(1);opacity:0.5;}100%{transform:translateY(-110vh) scale(1.5);opacity:0;}}
-    @keyframes rainbow{0%{background-position:0% 50%;}50%{background-position:100% 50%;}100%{background-position:0% 50%;}}
-    @keyframes pulse{0%,100%{opacity:1;}50%{opacity:0.5;}}
-    .container{width:100%;max-width:500px;position:relative;z-index:2;}
-    .glass{background:var(--glass-bg);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border:1px solid var(--glass-border);border-radius:24px;box-shadow:0 8px 32px rgba(0,0,0,0.1);}
-    .gradient-text{background:linear-gradient(135deg,var(--primary),var(--secondary));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
-    .font-orbitron{font-family:'Orbitron',sans-serif;}
-    
-    /* LOGIN PAGE */
-    .login-container{display:flex;align-items:center;justify-content:center;min-height:100vh;width:100%;}
-    .login-box{width:100%;max-width:400px;padding:32px;}
-    .login-title{font-size:1.8rem;font-weight:bold;text-align:center;margin-bottom:8px;}
-    .login-subtitle{text-align:center;color:var(--text-secondary);font-size:0.9rem;margin-bottom:32px;}
-    .login-input{width:100%;padding:16px;background:rgba(255,255,255,0.5);border:1px solid rgba(255,255,255,0.6);border-radius:16px;color:var(--text-primary);font-size:1.1rem;text-align:center;letter-spacing:4px;outline:none;transition:all 0.3s;}
-    .login-input::placeholder{color:var(--text-secondary);letter-spacing:normal;}
-    .login-input:focus{border-color:var(--primary);box-shadow:0 0 20px rgba(14,165,233,0.3);}
-    .login-btn{width:100%;padding:16px;margin-top:24px;border:none;border-radius:50px;font-size:1.1rem;font-weight:bold;color:#fff;background:linear-gradient(135deg,var(--primary),var(--secondary));cursor:pointer;transition:all 0.3s;display:flex;align-items:center;justify-content:center;gap:8px;}
-    .login-btn:hover{opacity:0.9;transform:scale(1.02);}
-    .login-btn:disabled{opacity:0.5;cursor:not-allowed;}
-    .login-error{color:var(--destructive);text-align:center;font-size:0.85rem;margin-top:12px;}
-    .telegram-btn{width:100%;padding:14px;margin-top:16px;border:none;border-radius:50px;font-size:1rem;font-weight:bold;color:#fff;background:linear-gradient(135deg,#0088cc,#00aced);cursor:pointer;transition:all 0.3s;display:flex;align-items:center;justify-content:center;gap:10px;text-decoration:none;}
-    .telegram-btn:hover{opacity:0.9;transform:scale(1.02);}
-    .login-footer{text-align:center;font-size:0.75rem;color:var(--text-secondary);margin-top:24px;}
-    
-    /* DASHBOARD */
-    .dashboard{display:none;}
-    .header{text-align:center;padding:20px;margin-bottom:20px;position:relative;}
-    .header h1{font-size:clamp(1.2rem,5vw,1.5rem);font-weight:bold;}
-    .icon-btn{background:rgba(255,255,255,0.5);border:none;padding:8px;border-radius:50%;cursor:pointer;color:var(--text-primary);transition:all 0.3s;width:40px;height:40px;display:flex;align-items:center;justify-content:center;position:absolute;top:50%;transform:translateY(-50%);}
-    .icon-btn:hover{background:rgba(255,255,255,0.7);}
-    .icon-btn.left{left:16px;}
-    .icon-btn.right{right:16px;}
-    .top-bar{display:flex;justify-content:space-between;align-items:center;padding:16px 20px;margin-bottom:20px;}
-    .period-box{font-size:clamp(0.8rem,3vw,1rem);font-weight:600;color:var(--text-secondary);}
-    .timer-box{font-size:clamp(1.5rem,6vw,2rem);font-weight:bold;color:var(--secondary);}
-    .stats-section{padding:16px 20px;margin-bottom:20px;}
-    .stats-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;text-align:center;}
-    .stat-item{display:flex;flex-direction:column;}
-    .stat-label{font-size:0.6rem;color:var(--text-secondary);margin-bottom:4px;}
-    .stat-value{font-size:0.9rem;font-weight:bold;}
-    .stat-value.win{color:var(--success);text-shadow:0 0 10px rgba(34,197,94,0.3);}
-    .stat-value.loss{color:var(--destructive);text-shadow:0 0 10px rgba(239,68,68,0.3);}
-    .stat-value.jackpot{color:var(--accent);text-shadow:0 0 10px rgba(168,85,247,0.3);}
-    .stat-value.rate{color:var(--primary);text-shadow:0 0 10px rgba(14,165,233,0.3);}
-    .prediction-section{padding:24px;margin-bottom:20px;text-align:center;}
-    .server-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:16px;}
-    .server-card{position:relative;padding:16px 8px;background:rgba(255,255,255,0.5);border:2px solid transparent;border-radius:16px;cursor:pointer;transition:all 0.3s;text-align:center;}
-    .server-card:hover{background:rgba(255,255,255,0.7);}
-    .server-card.active{background:rgba(255,255,255,0.8);box-shadow:0 4px 20px rgba(14,165,233,0.2);}
-    .server-card[data-server="server1"].active{border-color:#0ea5e9;}
-    .server-card[data-server="server2"].active{border-color:#10b981;}
-    .server-card[data-server="server3"].active{border-color:#a855f7;}
-    .server-icon{width:40px;height:40px;border-radius:50%;margin:0 auto 8px;display:flex;align-items:center;justify-content:center;color:#fff;}
-    .server-icon.alpha{background:linear-gradient(135deg,var(--primary),#22d3ee);}
-    .server-icon.beta{background:linear-gradient(135deg,var(--secondary),#34d399);}
-    .server-icon.gamma{background:linear-gradient(135deg,var(--accent),#c084fc);}
-    .server-name{font-size:0.65rem;font-weight:bold;}
-    .server-active-dot{position:absolute;top:8px;right:8px;width:8px;height:8px;border-radius:50%;animation:pulse 1.5s infinite;}
-    .server-card[data-server="server1"] .server-active-dot{background:#0ea5e9;}
-    .server-card[data-server="server2"] .server-active-dot{background:#10b981;}
-    .server-card[data-server="server3"] .server-active-dot{background:#a855f7;}
-    .prediction-label{font-size:0.9rem;color:var(--text-secondary);margin-bottom:16px;}
-    .prediction-balls{display:flex;justify-content:center;align-items:center;gap:16px;margin:24px 0;}
-    .side-ball-container{width:80px;height:80px;position:relative;}
-    .rainbow-border{position:absolute;inset:0;border-radius:50%;padding:3px;background:linear-gradient(90deg,#ff0000,#ff8000,#ffff00,#80ff00,#00ff00,#00ff80,#00ffff,#0080ff,#0000ff,#8000ff,#ff00ff,#ff0080,#ff0000);background-size:400% 400%;animation:rainbow 3s ease infinite;}
-    .side-ball{width:100%;height:100%;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:2rem;font-weight:900;background:rgba(255,255,255,0.9);box-shadow:0 0 30px rgba(0,0,0,0.1);}
-    .side-ball.big{color:var(--primary);text-shadow:0 0 20px rgba(14,165,233,0.5);}
-    .side-ball.small{color:var(--secondary);text-shadow:0 0 20px rgba(16,185,129,0.5);}
-    .ball{border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:bold;color:#fff;box-shadow:0 4px 15px rgba(0,0,0,0.2);}
-    .ball.sm{width:32px;height:32px;font-size:0.85rem;}
-    .ball.lg{width:80px;height:80px;font-size:1.8rem;}
-    .ball.red{background:radial-gradient(circle at 30% 30%,#ff6b9d,#ff1493,#a0005a);}
-    .ball.green{background:radial-gradient(circle at 30% 30%,#6bd36b,#22c55e,#006600);}
-    .ball.purple{background:radial-gradient(circle at 30% 30%,#c4b5fd,#8b5cf6,#5b21b6);}
-    .status-badge{padding:6px 12px;border-radius:50px;font-size:0.65rem;font-weight:bold;color:#fff;display:inline-flex;align-items:center;justify-content:center;}
-    .status-pending{background:linear-gradient(135deg,#f59e0b,#ea580c);animation:pulse 1.5s infinite;}
-    .status-victory{background:linear-gradient(135deg,#22c55e,#15803d);}
-    .status-defeat{background:linear-gradient(135deg,#ef4444,#b91c1c);}
-    .status-jackpot{background:linear-gradient(135deg,#a855f7,#7c3aed);}
-    
-    /* HISTORY PAGE */
-    .history-page{display:none;height:100vh;flex-direction:column;overflow:hidden;}
-    .history-section{padding:16px;flex:1;display:flex;flex-direction:column;min-height:0;max-height:500px;}
-    .history-header-row{display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:8px;padding:12px;font-size:0.6rem;font-weight:bold;background:rgba(255,255,255,0.5);border-radius:12px;margin-bottom:8px;text-align:center;color:var(--text-secondary);flex-shrink:0;}
-    .history-box{display:flex;flex-direction:column;gap:6px;overflow-y:auto;flex:1;}
-    .history-row{display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:8px;padding:12px;font-size:0.8rem;border-radius:12px;align-items:center;text-align:center;background:rgba(255,255,255,0.5);flex-shrink:0;}
-    .no-history{text-align:center;padding:40px;color:var(--text-secondary);}
-    .hidden{display:none !important;}
+    *{margin:0;padding:0;box-sizing:border-box}
+    body{font-family:'Space Grotesk',sans-serif;background:linear-gradient(135deg,hsl(230,25%,7%) 0%,hsl(260,40%,12%) 50%,hsl(230,25%,7%) 100%);color:hsl(45,100%,96%);min-height:100vh;padding:20px;overflow-x:hidden}
+    .bubbles{position:fixed;inset:0;overflow:hidden;z-index:0;pointer-events:none}
+    .bubbles span{position:absolute;bottom:-150px;border-radius:50%;animation:rise 25s infinite ease-in}
+    .bubbles span:nth-child(1){width:80px;height:80px;left:5%;animation-duration:18s;background:radial-gradient(circle,hsla(38,100%,50%,.5),hsla(38,100%,50%,.15))}
+    .bubbles span:nth-child(2){width:60px;height:60px;left:15%;animation-duration:22s;background:radial-gradient(circle,hsla(200,100%,50%,.5),hsla(200,100%,50%,.15))}
+    .bubbles span:nth-child(3){width:100px;height:100px;left:35%;animation-duration:26s;background:radial-gradient(circle,hsla(280,80%,55%,.5),hsla(280,80%,55%,.15))}
+    .bubbles span:nth-child(4){width:50px;height:50px;left:55%;animation-duration:20s;background:radial-gradient(circle,hsla(142,71%,45%,.5),hsla(142,71%,45%,.15))}
+    .bubbles span:nth-child(5){width:90px;height:90px;left:75%;animation-duration:24s;background:radial-gradient(circle,hsla(15,100%,55%,.5),hsla(15,100%,55%,.15))}
+    .bubbles span:nth-child(6){width:120px;height:120px;left:85%;animation-duration:30s;background:radial-gradient(circle,hsla(200,100%,60%,.5),hsla(200,100%,60%,.15))}
+    @keyframes rise{0%{transform:translateY(0) scale(1);opacity:.5}100%{transform:translateY(-110vh) scale(1.4);opacity:0}}
+    @keyframes scaleIn{from{opacity:0;transform:scale(.95)}to{opacity:1;transform:scale(1)}}
+    @keyframes slideIn{from{transform:translateX(100%);opacity:0}to{transform:translateX(0);opacity:1}}
+    .glass{background:hsla(230,20%,100%,.06);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border:1px solid hsla(230,20%,100%,.12);border-radius:1rem;box-shadow:0 8px 32px hsla(0,0%,0%,.3);margin-bottom:20px}
+    .container{max-width:900px;margin:0 auto;position:relative;z-index:2}
+    .header{display:flex;align-items:center;gap:12px;padding:20px 24px}
+    .header-icon{width:48px;height:48px;background:linear-gradient(135deg,hsl(38,100%,50%),hsl(200,100%,50%));border-radius:12px;display:flex;align-items:center;justify-content:center}
+    .header-icon svg{width:24px;height:24px;color:hsl(230,25%,7%)}
+    .header h1{font-family:'Chakra Petch',sans-serif;font-size:clamp(1.2rem,4vw,1.5rem);font-weight:700;background:linear-gradient(135deg,hsl(38,100%,50%),hsl(200,100%,50%));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;letter-spacing:2px}
+    .header p{font-size:.7rem;color:hsl(230,10%,55%);letter-spacing:1px}
+    .stats-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:20px}
+    .stat-card{padding:20px;text-align:center}
+    .stat-label{font-size:.75rem;color:hsl(230,10%,55%);margin-bottom:4px;letter-spacing:2px}
+    .stat-value{font-family:'Chakra Petch',sans-serif;font-size:2rem;font-weight:700}
+    .stat-value.primary{color:hsl(38,100%,50%)}
+    .stat-value.success{color:hsl(142,71%,45%)}
+    .stat-value.secondary{color:hsl(200,100%,50%)}
+    .section-title{display:flex;align-items:center;gap:10px;font-family:'Chakra Petch',sans-serif;font-size:.9rem;font-weight:700;padding:20px 24px 0;letter-spacing:2px}
+    .section-title svg{color:hsl(38,100%,50%);width:20px;height:20px}
+    .add-key-form{display:grid;grid-template-columns:1fr auto auto auto;gap:12px;padding:16px 24px 24px}
+    @media(max-width:700px){.add-key-form{grid-template-columns:1fr 1fr}}
+    .key-input{width:100%;padding:14px 16px;background:hsla(230,15%,18%,.4);border:1px solid hsl(230,15%,20%);border-radius:16px;color:hsl(45,100%,96%);font-family:'Chakra Petch',sans-serif;font-size:.95rem;letter-spacing:2px;text-transform:uppercase;outline:none;transition:all .3s}
+    .key-input:focus{border-color:hsl(38,100%,50%);box-shadow:0 0 20px hsla(38,100%,50%,.2)}
+    .key-input::placeholder{font-family:'Space Grotesk',sans-serif;letter-spacing:normal;text-transform:none;color:hsl(230,10%,55%)}
+    .generate-btn{display:flex;align-items:center;justify-content:center;gap:8px;padding:14px 20px;background:hsla(280,80%,55%,.2);border:1px solid hsla(280,80%,55%,.4);border-radius:16px;color:hsl(45,100%,96%);font-family:'Chakra Petch',sans-serif;font-weight:600;cursor:pointer;transition:all .3s;font-size:.85rem;letter-spacing:1px}
+    .generate-btn:hover{background:hsla(280,80%,55%,.35)}
+    .expiry-select{padding:14px 16px;background:hsla(230,15%,18%,.4);border:1px solid hsl(230,15%,20%);border-radius:16px;color:hsl(45,100%,96%);font-size:.9rem;outline:none;cursor:pointer}
+    .expiry-select option{background:hsl(260,40%,12%);color:#fff}
+    .add-btn{display:flex;align-items:center;justify-content:center;gap:8px;padding:14px 24px;background:linear-gradient(135deg,hsl(38,100%,50%),hsl(200,100%,50%));border:none;border-radius:16px;color:hsl(230,25%,7%);font-family:'Chakra Petch',sans-serif;font-size:.9rem;font-weight:700;cursor:pointer;transition:all .3s;letter-spacing:1px}
+    .add-btn:hover{opacity:.9;transform:scale(1.02)}
+    .keys-section{padding:20px 24px}
+    .keys-header{display:flex;align-items:center;gap:10px;margin-bottom:16px;font-family:'Chakra Petch',sans-serif;letter-spacing:2px;font-size:.9rem;font-weight:700}
+    .keys-header svg{color:hsl(142,71%,45%);width:20px;height:20px}
+    .keys-list{max-height:400px;overflow-y:auto}
+    .key-card{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:16px;padding:16px 20px;border-radius:16px;margin-bottom:12px;animation:scaleIn .3s ease-out;background:hsla(142,71%,45%,.05);border:1px solid hsla(142,71%,45%,.2)}
+    .key-info{flex:1;min-width:200px}
+    .key-name-row{display:flex;align-items:center;gap:10px}
+    .key-name{font-family:'Chakra Petch',sans-serif;font-size:1.1rem;font-weight:700;letter-spacing:2px}
+    .copy-btn{display:flex;align-items:center;justify-content:center;padding:6px;background:hsla(200,100%,50%,.15);border:none;border-radius:8px;color:hsl(200,100%,50%);cursor:pointer;transition:all .3s}
+    .copy-btn:hover{background:hsla(200,100%,50%,.3)}
+    .copy-btn.copied{background:hsla(142,71%,45%,.2);color:hsl(142,71%,45%)}
+    .key-meta{display:flex;flex-wrap:wrap;gap:16px;margin-top:6px;font-size:.75rem;color:hsl(230,10%,55%)}
+    .key-meta span{display:flex;align-items:center;gap:4px}
+    .key-meta .in-use{color:hsl(38,100%,50%)}
+    .key-actions{display:flex;gap:8px}
+    .action-btn{display:flex;align-items:center;gap:6px;padding:10px 16px;border-radius:12px;font-size:.85rem;font-weight:600;border:none;cursor:pointer;transition:all .3s}
+    .action-btn.extend{background:hsla(38,100%,50%,.15);color:hsl(38,100%,50%)}
+    .action-btn.extend:hover{background:hsla(38,100%,50%,.25)}
+    .action-btn.revoke{background:hsla(0,72%,51%,.15);color:hsl(0,72%,51%)}
+    .action-btn.revoke:hover{background:hsla(0,72%,51%,.25)}
+    .extend-controls{display:flex;align-items:center;gap:8px}
+    .extend-select{padding:8px 12px;background:hsla(230,15%,18%,.4);border:1px solid hsl(230,15%,20%);border-radius:8px;color:hsl(45,100%,96%);font-size:.85rem}
+    .extend-select option{background:hsl(260,40%,12%)}
+    .apply-btn{padding:8px 16px;background:hsla(142,71%,45%,.15);border:none;border-radius:8px;color:hsl(142,71%,45%);font-size:.85rem;font-weight:600;cursor:pointer}
+    .apply-btn:hover{background:hsla(142,71%,45%,.25)}
+    .cancel-btn{padding:8px 16px;background:hsla(230,20%,100%,.08);border:none;border-radius:8px;color:hsl(230,10%,55%);font-size:.85rem;cursor:pointer}
+    .cancel-btn:hover{background:hsla(230,20%,100%,.15)}
+    .empty-state{text-align:center;color:hsl(230,10%,55%);padding:40px 0}
+    .toast{position:fixed;bottom:30px;right:30px;padding:16px 24px;border-radius:16px;font-weight:600;z-index:1000;animation:slideIn .3s ease-out;display:none}
+    .toast.success{background:hsla(142,71%,45%,.9);color:#fff}
+    .toast.error{background:hsla(0,72%,51%,.9);color:#fff}
+    .toast.show{display:block}
+    ::-webkit-scrollbar{width:6px}
+    ::-webkit-scrollbar-track{background:hsla(0,0%,100%,.05);border-radius:3px}
+    ::-webkit-scrollbar-thumb{background:hsla(0,0%,100%,.2);border-radius:3px}
   </style>
 </head>
 <body>
   <div class="bubbles"><span></span><span></span><span></span><span></span><span></span><span></span></div>
-
-  <!-- LOGIN PAGE -->
-  <div id="loginPage" class="login-container">
-    <div class="login-box glass">
-      <h1 class="login-title gradient-text font-orbitron">ITACHIIXT</h1>
-      <p class="login-subtitle">Enter your access key to continue</p>
-      <form id="loginForm">
-        <input type="text" id="keyInput" class="login-input" placeholder="ENTER KEY" autocomplete="off">
-        <div id="loginError" class="login-error"></div>
-        <button type="submit" id="loginBtn" class="login-btn">
-          <span id="loginBtnText">UNLOCK</span>
+  <div class="container">
+    <div class="header glass">
+      <div class="header-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 2l-2 2m-7.61 7.61a5.5 5.5 0 1 1-7.778 7.778 5.5 5.5 0 0 1 7.777-7.777zm0 0L15.5 7.5m0 0l3 3L22 7l-3-3m-3.5 3.5L19 4"/></svg>
+      </div>
+      <div>
+        <h1>ITACHI - MAXIMUM</h1>
+        <p>ITACHI MAXIMUM - ITACHIIXT</p>
+      </div>
+    </div>
+    <div class="stats-grid">
+      <div class="stat-card glass"><div class="stat-label">TOTAL</div><div class="stat-value primary" id="totalKeys">0</div></div>
+      <div class="stat-card glass"><div class="stat-label">ACTIVE</div><div class="stat-value success" id="activeKeys">0</div></div>
+      <div class="stat-card glass"><div class="stat-label">USED</div><div class="stat-value secondary" id="usedKeys">0</div></div>
+    </div>
+    <div class="glass">
+      <div class="section-title">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+        ITACHI KEY MAXIMUM
+      </div>
+      <div class="add-key-form">
+        <input type="text" id="newKeyInput" class="key-input" placeholder="Enter key name..." autocomplete="off">
+        <button class="generate-btn" onclick="generateKey()">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 3 21 3 21 8"/><line x1="4" y1="20" x2="21" y2="3"/><polyline points="21 16 21 21 16 21"/><line x1="15" y1="15" x2="21" y2="21"/><line x1="4" y1="4" x2="9" y2="9"/></svg>
+          GENERATE
         </button>
-      </form>
-      <a href="https://t.me/ITACHIIXT" target="_blank" rel="noopener noreferrer" class="telegram-btn">
-        TELEGRAM
-      </a>
-      <p class="login-footer">TELEGRAM USERNAME BY TEAM - ITACHIIXT</p>
+        <select id="expirySelect" class="expiry-select">
+          <option value="1">1 HOUR</option>
+          <option value="6">6 HOURS</option>
+          <option value="12">12 HOURS</option>
+          <option value="24" selected>1 DAY</option>
+          <option value="72">3 DAYS</option>
+          <option value="168">7 DAYS</option>
+          <option value="720">30 DAYS</option>
+        </select>
+        <button class="add-btn" onclick="addKey()">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+          CREATE
+        </button>
+      </div>
+    </div>
+    <div class="glass">
+      <div class="keys-section">
+        <div class="keys-header">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+          <span>ITACHI ACTIVE KEY - <span id="activeCount" style="color:hsl(142,71%,45%)">0 NO</span></span>
+        </div>
+        <div id="activeKeysList" class="keys-list"><div class="empty-state">No active keys</div></div>
+      </div>
     </div>
   </div>
+  <div id="toast" class="toast"></div>
 
-  <!-- DASHBOARD PAGE -->
-  <div id="mainPage" class="container dashboard">
-    <header class="header glass">
-      <button class="icon-btn left" id="historyBtn" title="History">
-        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-      </button>
-      <h1 class="gradient-text font-orbitron">ITACHIIXT</h1>
-      <button class="icon-btn right" id="logoutBtn" title="Logout">
-        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18.36 6.64a9 9 0 1 1-12.73 0"/><line x1="12" x2="12" y1="2" y2="12"/></svg>
-      </button>
-    </header>
-    
-    <div class="top-bar glass">
-      <div class="period-box">WINGO NO - <span id="period">--</span></div>
-      <div class="timer-box font-orbitron" id="timer">00</div>
-    </div>
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/11.8.1/firebase-app.js";
+    import { getDatabase, ref, set, get, remove, update, onValue } from "https://www.gstatic.com/firebasejs/11.8.1/firebase-database.js";
 
-    <section class="stats-section glass">
-      <div class="stats-grid">
-        <div class="stat-item"><span class="stat-label">TOTAL</span><span class="stat-value font-orbitron" id="totalCount">0</span></div>
-        <div class="stat-item"><span class="stat-label">VICTORY</span><span class="stat-value font-orbitron win" id="winCount">0</span></div>
-        <div class="stat-item"><span class="stat-label">DEFEAT</span><span class="stat-value font-orbitron loss" id="lossCount">0</span></div>
-        <div class="stat-item"><span class="stat-label">JACKPOT</span><span class="stat-value font-orbitron jackpot" id="jackpotCount">0</span></div>
-        <div class="stat-item"><span class="stat-label">WIN RATE</span><span class="stat-value font-orbitron rate" id="winRate">0.0%</span></div>
-      </div>
-    </section>
+    const app = initializeApp({
+      apiKey: "AIzaSyDq2sG6QYM4e32TONkTwb3-bWHKGUJqv3U",
+      databaseURL: "https://maqsad-758501-default-rtdb.firebaseio.com",
+      projectId: "maqsad-758501",
+      storageBucket: "maqsad-758501.firebasestorage.app",
+      messagingSenderId: "44885578390",
+      appId: "1:44885578390:android:99eb5896c1538be2aba8b7"
+    });
+    const db = getDatabase(app);
+    const keysRef = ref(db, "keys");
 
-    <section class="prediction-section glass">
-      <div class="server-grid" id="serverGrid">
-        <div class="server-card active" data-server="server1">
-          <div class="server-active-dot" id="dot1"></div>
-          <div class="server-icon alpha">
-            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect width="20" height="8" x="2" y="2" rx="2" ry="2"/><rect width="20" height="8" x="2" y="14" rx="2" ry="2"/><line x1="6" x2="6.01" y1="6" y2="6"/><line x1="6" x2="6.01" y1="18" y2="18"/></svg>
-          </div>
-          <p class="server-name font-orbitron">AI PATTERN</p>
-        </div>
-        <div class="server-card" data-server="server2">
-          <div class="server-active-dot hidden" id="dot2"></div>
-          <div class="server-icon beta">
-            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 4.5a2.5 2.5 0 0 0-4.96-.46 2.5 2.5 0 0 0-1.98 3 2.5 2.5 0 0 0 1.32 4.24 3 3 0 0 0 .34 5.58 2.5 2.5 0 0 0 2.96 3.08A2.5 2.5 0 0 0 12 19.5a2.5 2.5 0 0 0 2.32.64 2.5 2.5 0 0 0 2.96-3.08 3 3 0 0 0 .34-5.58 2.5 2.5 0 0 0 1.32-4.24 2.5 2.5 0 0 0-1.98-3A2.5 2.5 0 0 0 12 4.5"/></svg>
-          </div>
-          <p class="server-name font-orbitron">API ENGINE</p>
-        </div>
-        <div class="server-card" data-server="server3">
-          <div class="server-active-dot hidden" id="dot3"></div>
-          <div class="server-icon gamma">
-            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 14a1 1 0 0 1-.78-1.63l9.9-10.2a.5.5 0 0 1 .86.46l-1.92 6.02A1 1 0 0 0 13 10h7a1 1 0 0 1 .78 1.63l-9.9 10.2a.5.5 0 0 1-.86-.46l1.92-6.02A1 1 0 0 0 11 14z"/></svg>
-          </div>
-          <p class="server-name font-orbitron">SMART TRADE</p>
-        </div>
-      </div>
-      <p class="prediction-label"><span id="serverLabel">AI PATTERN</span> SERVER - PREDICTION</p>
-      <div class="prediction-balls">
-        <div class="side-ball-container">
-          <div class="rainbow-border">
-            <div id="sideBall" class="side-ball big font-orbitron">B</div>
-          </div>
-        </div>
-        <div id="numberBall" class="ball lg purple font-orbitron">5</div>
-      </div>
-    </section>
-  </div>
+    let extendingKey = null;
 
-  <!-- HISTORY PAGE -->
-  <div id="historyPage" class="container history-page">
-    <header class="header glass" style="flex-shrink:0;margin-bottom:20px;">
-      <button class="icon-btn left" id="backBtn" title="Back">
-        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m12 19-7-7 7-7"/><path d="M19 12H5"/></svg>
-      </button>
-      <h1 class="gradient-text font-orbitron">PREDICTION HISTORY</h1>
-      <button class="icon-btn right" id="clearHistoryBtn" title="Clear History">
-        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18"/><path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"/><path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"/><line x1="10" x2="10" y1="11" y2="17"/><line x1="14" x2="14" y1="11" y2="17"/></svg>
-      </button>
-    </header>
-    
-    <section class="history-section glass">
-      <div class="history-header-row">
-        <div>PERIOD</div><div>PREDICT</div><div>NUMBER</div><div>STATUS</div>
-      </div>
-      <div id="historyBox" class="history-box"></div>
-    </section>
-  </div>
-
-<script>
-const FIREBASE_DATABASE_URL = 'https://shadow-93ea0-default-rtdb.firebaseio.com';
-const HISTORY_API = 'https://draw.ar-lottery01.com/WinGo/WinGo_1M/GetHistoryIssuePage.json';
-
-let historyData = [];
-let lastSavedPeriod = null;
-let selectedServer = 'server1';
-const serverNames = { server1: 'AI PATTERN', server2: 'API ENGINE', server3: 'SMART TRADE' };
-
-function generateDeviceId() {
-  const stored = localStorage.getItem('deviceId');
-  if (stored) return stored;
-  const canvas = document.createElement('canvas');
-  const ctx = canvas.getContext('2d');
-  if (ctx) { ctx.textBaseline = 'top'; ctx.font = '14px Arial'; ctx.fillText('device-fingerprint', 2, 2); }
-  const fingerprint = [navigator.userAgent, navigator.language, screen.width, screen.height, screen.colorDepth, new Date().getTimezoneOffset(), canvas.toDataURL(), navigator.hardwareConcurrency || 'unknown'].join('|');
-  let hash = 0;
-  for (let i = 0; i < fingerprint.length; i++) { const char = fingerprint.charCodeAt(i); hash = ((hash << 5) - hash) + char; hash = hash & hash; }
-  const deviceId = `DEV_${Math.abs(hash).toString(36).toUpperCase()}_${Date.now().toString(36).toUpperCase()}`;
-  localStorage.setItem('deviceId', deviceId);
-  return deviceId;
-}
-
-async function validateKey(inputKey) {
-  try {
-    const deviceId = generateDeviceId();
-    const response = await fetch(`${FIREBASE_DATABASE_URL}/keys.json`);
-    const keys = await response.json();
-    if (!keys) return { valid: false, message: 'No keys found in database' };
-    for (const keyId in keys) {
-      const keyData = keys[keyId];
-      if (keyData.key === inputKey || keyId === inputKey) {
-        if (keyData.isActive === false) return { valid: false, message: 'Key has been deactivated' };
-        const expiresAt = keyData.expiresAt || keyData.expiry;
-        if (expiresAt && Date.now() > expiresAt) return { valid: false, message: 'Key has expired' };
-        if (keyData.boundDevice) {
-          if (keyData.boundDevice !== deviceId) return { valid: false, message: 'Key is already bound to another device' };
-        } else {
-          await fetch(`${FIREBASE_DATABASE_URL}/keys/${keyId}.json`, { method: 'PATCH', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ boundDevice: deviceId, boundAt: Date.now() }) });
-        }
-        return { valid: true, expiresAt, keyId };
-      }
+    function showToast(message, type = 'success') {
+      const t = document.getElementById('toast');
+      t.textContent = message;
+      t.className = `toast ${type} show`;
+      setTimeout(() => t.classList.remove('show'), 3000);
     }
-    return { valid: false, message: 'Invalid key' };
-  } catch (error) { console.error('Firebase error:', error); return { valid: false, message: 'Connection error. Please try again.' }; }
-}
 
-function checkAuth() {
-  const isLoggedIn = sessionStorage.getItem('isLoggedIn');
-  if (isLoggedIn === 'true') showDashboard();
-}
+    function formatTimeRemaining(ms) {
+      if (ms <= 0) return 'Expired';
+      const hours = Math.floor(ms / 3600000);
+      const minutes = Math.floor((ms % 3600000) / 60000);
+      const days = Math.floor(hours / 24);
+      if (days > 0) return `${days}d ${hours % 24}h`;
+      if (hours > 0) return `${hours}h ${minutes}m`;
+      return `${minutes}m`;
+    }
 
-document.getElementById('loginForm').addEventListener('submit', async function(e) {
-  e.preventDefault();
-  const key = document.getElementById('keyInput').value.trim().toUpperCase();
-  const btn = document.getElementById('loginBtn');
-  const btnText = document.getElementById('loginBtnText');
-  const errorDiv = document.getElementById('loginError');
-  if (!key) { errorDiv.textContent = '* PLEASE ENTER A KEY *'; return; }
-  btnText.textContent = 'VERIFYING...'; btn.disabled = true; errorDiv.textContent = '';
-  const result = await validateKey(key);
-  if (result.valid) {
-    localStorage.removeItem('historyData'); historyData = [];
-    sessionStorage.setItem('isLoggedIn', 'true'); sessionStorage.setItem('userKey', key);
-    if (result.expiresAt) sessionStorage.setItem('expiresAt', String(result.expiresAt));
-    showDashboard();
-  } else { errorDiv.textContent = `* ${result.message.toUpperCase()} *`; btnText.textContent = 'UNLOCK'; btn.disabled = false; }
-});
+    window.generateKey = function() {
+      const chars = 'ABCDEFGHIKLMNOPRSTUVWXYZ0123456789';
+      let key = 'SH';
+      for (let i = 0; i < 8; i++) key += chars.charAt(Math.floor(Math.random() * chars.length));
+      document.getElementById('newKeyInput').value = key;
+      showToast('RANDOM KEY GENERATED');
+    };
 
-function logout() {
-  sessionStorage.clear();
-  localStorage.removeItem('historyData'); localStorage.removeItem('period'); localStorage.removeItem('side'); localStorage.removeItem('num');
-  location.reload();
-}
-
-document.getElementById('logoutBtn').addEventListener('click', logout);
-document.getElementById('clearHistoryBtn').addEventListener('click', function() { historyData = []; localStorage.removeItem('historyData'); updateStats(); renderHistory(); });
-document.getElementById('historyBtn').addEventListener('click', showHistoryPage);
-document.getElementById('backBtn').addEventListener('click', showDashboard);
-
-document.querySelectorAll('.server-card').forEach(card => {
-  card.addEventListener('click', function() {
-    const serverId = this.dataset.server;
-    selectedServer = serverId;
-    localStorage.setItem('selectedServer', serverId);
-    document.querySelectorAll('.server-card').forEach(c => c.classList.remove('active'));
-    this.classList.add('active');
-    document.getElementById('dot1').classList.toggle('hidden', serverId !== 'server1');
-    document.getElementById('dot2').classList.toggle('hidden', serverId !== 'server2');
-    document.getElementById('dot3').classList.toggle('hidden', serverId !== 'server3');
-    document.getElementById('serverLabel').textContent = serverNames[serverId];
-  });
-});
-
-function showDashboard() {
-  document.getElementById('loginPage').classList.add('hidden');
-  document.getElementById('historyPage').style.display = 'none';
-  document.getElementById('mainPage').style.display = 'block';
-  selectedServer = localStorage.getItem('selectedServer') || 'server1';
-  document.querySelectorAll('.server-card').forEach(c => c.classList.toggle('active', c.dataset.server === selectedServer));
-  document.getElementById('dot1').classList.toggle('hidden', selectedServer !== 'server1');
-  document.getElementById('dot2').classList.toggle('hidden', selectedServer !== 'server2');
-  document.getElementById('dot3').classList.toggle('hidden', selectedServer !== 'server3');
-  document.getElementById('serverLabel').textContent = serverNames[selectedServer];
-  initDashboard();
-}
-
-function showHistoryPage() {
-  document.getElementById('mainPage').style.display = 'none';
-  document.getElementById('historyPage').style.display = 'flex';
-  renderHistory();
-}
-
-function initDashboard() {
-  const saved = localStorage.getItem('historyData');
-  if (saved) historyData = JSON.parse(saved);
-  lastSavedPeriod = localStorage.getItem('period');
-  const savedSide = localStorage.getItem('side');
-  const savedNum = localStorage.getItem('num');
-  if (lastSavedPeriod && savedSide && savedNum) updateUI(savedSide, parseInt(savedNum, 10));
-  updateStats(); renderHistory();
-  setInterval(updateTimer, 1000); setInterval(autoPredict, 1000); setInterval(checkResults, 5000);
-  updateTimer(); autoPredict();
-}
-
-function getPeriod() {
-  const utc = new Date();
-  const y = utc.getUTCFullYear(), m = String(utc.getUTCMonth() + 1).padStart(2, '0'), dd = String(utc.getUTCDate()).padStart(2, '0');
-  const totalMinutes = utc.getUTCHours() * 60 + utc.getUTCMinutes();
-  return `${y}${m}${dd}1000${10001 + totalMinutes}`;
-}
-
-function getRemainingSeconds() { return 60 - new Date().getUTCSeconds(); }
-
-function getBallClass(n) { if ([0, 5].includes(n)) return 'purple'; if ([2, 4, 6, 8].includes(n)) return 'red'; return 'green'; }
-
-function updateTimer() {
-  document.getElementById('timer').textContent = String(getRemainingSeconds()).padStart(2, '0');
-  document.getElementById('period').textContent = getPeriod().slice(-5);
-}
-
-function updateStats() {
-  const completed = historyData.filter(h => h.status !== 'PENDING');
-  const wins = historyData.filter(h => h.status === 'VICTORY').length;
-  const losses = historyData.filter(h => h.status === 'DEFEAT').length;
-  const jackpots = historyData.filter(h => h.status === 'JACKPOT').length;
-  const total = completed.length;
-  const winRate = total > 0 ? (((wins + jackpots) / total) * 100).toFixed(1) : '0.0';
-  document.getElementById('totalCount').textContent = total;
-  document.getElementById('winCount').textContent = wins;
-  document.getElementById('lossCount').textContent = losses;
-  document.getElementById('jackpotCount').textContent = jackpots;
-  document.getElementById('winRate').textContent = winRate + '%';
-}
-
-function renderHistory() {
-  const box = document.getElementById('historyBox');
-  box.innerHTML = '';
-  const displayData = historyData.slice(0, 50);
-  if (displayData.length === 0) { box.innerHTML = '<div class="no-history">No predictions yet. Wait for the next period.</div>'; return; }
-  displayData.forEach(item => {
-    const row = document.createElement('div');
-    row.className = 'history-row';
-    row.innerHTML = `
-      <div style="font-weight:500">${item.period.slice(-5)}</div>
-      <div style="font-weight:bold">${item.predicted}</div>
-      <div style="display:flex;justify-content:center"><div class="ball sm ${getBallClass(item.predictedNum)} font-orbitron">${item.predictedNum}</div></div>
-      <div><span class="status-badge status-${item.status.toLowerCase()}">${item.status}</span></div>
-    `;
-    box.appendChild(row);
-  });
-}
-
-function alphaLogic(recentNumbers) {
-  const recentSides = recentNumbers.map(n => n >= 5 ? 'BIG' : 'SMALL');
-  let predictedSide = 'BIG';
-  const bigCount = recentNumbers.slice(0, 8).filter(n => n >= 5).length;
-  const smallCount = 8 - bigCount;
-  const shortTrend = recentNumbers.slice(0, 3).reduce((acc, n) => acc + (n >= 5 ? 1 : -1), 0);
-  const longTrend = recentNumbers.slice(0, 8).reduce((acc, n) => acc + (n >= 5 ? 1 : -1), 0);
-  let patternScore = 0;
-  if (recentSides.length >= 3 && recentSides[0] === recentSides[1] && recentSides[1] === recentSides[2]) patternScore += recentSides[0] === 'BIG' ? -3 : 3;
-  if (bigCount > 5) patternScore -= (bigCount - 5); if (smallCount > 5) patternScore += (smallCount - 5);
-  patternScore += shortTrend * 0.5; patternScore *= 1.2;
-  if (longTrend > 2) patternScore -= 2; if (longTrend < -2) patternScore += 2;
-  patternScore += (Math.random() - 0.5) * 2;
-  if (patternScore > 1.5) predictedSide = 'BIG'; else if (patternScore < -1.5) predictedSide = 'SMALL'; else predictedSide = recentSides[0] || 'BIG';
-  const pool = predictedSide === 'BIG' ? [5, 6, 7, 8, 9] : [0, 1, 2, 3, 4];
-  const numberCounts = {}; recentNumbers.forEach(n => { numberCounts[n] = (numberCounts[n] || 0) + 1; });
-  const sortedPool = pool.sort((a, b) => (numberCounts[a] || 0) - (numberCounts[b] || 0));
-  const weights = [0.35, 0.25, 0.20, 0.12, 0.08];
-  let random = Math.random(), cumulative = 0, predictedNumber = sortedPool[0];
-  for (let i = 0; i < sortedPool.length; i++) { cumulative += weights[i]; if (random < cumulative) { predictedNumber = sortedPool[i]; break; } }
-  return { side: predictedSide, number: predictedNumber };
-}
-
-function betaLogic(recentNumbers, completedHistory) {
-  const recentSides = recentNumbers.map(n => n >= 5 ? 'BIG' : 'SMALL');
-  const recentResults = completedHistory.slice(0, 5);
-  const lastActualSide = recentSides[0] || 'BIG';
-  let predictedSide = lastActualSide, breakerTriggered = false;
-  if (recentSides.length >= 3) { const lastThree = recentSides.slice(0, 3); if (lastThree.every(s => s === lastThree[0])) { predictedSide = lastThree[0] === 'BIG' ? 'SMALL' : 'BIG'; breakerTriggered = true; } }
-  if (!breakerTriggered && recentResults.length >= 2) { const lastTwo = recentResults.slice(0, 2); if (lastTwo[0].status === 'DEFEAT' && lastTwo[1].status === 'DEFEAT' && lastTwo[0].predicted === lastTwo[1].predicted) { predictedSide = lastTwo[0].predicted === 'BIG' ? 'SMALL' : 'BIG'; breakerTriggered = true; } }
-  if (!breakerTriggered) predictedSide = lastActualSide;
-  const pool = predictedSide === 'BIG' ? [5, 6, 7, 8, 9] : [0, 1, 2, 3, 4];
-  const numberCounts = {}; recentNumbers.forEach(n => { numberCounts[n] = (numberCounts[n] || 0) + 1; });
-  const sortedPool = pool.sort((a, b) => (numberCounts[a] || 0) - (numberCounts[b] || 0));
-  const weights = [0.30, 0.28, 0.22, 0.12, 0.08];
-  let random = Math.random(), cumulative = 0, predictedNumber = sortedPool[0];
-  for (let i = 0; i < sortedPool.length; i++) { cumulative += weights[i]; if (random < cumulative) { predictedNumber = sortedPool[i]; break; } }
-  return { side: predictedSide, number: predictedNumber };
-}
-
-function gammaLogic(recentNumbers, completedHistory) {
-  const recentSides = recentNumbers.map(n => n >= 5 ? 'BIG' : 'SMALL');
-  const recentResults = completedHistory.slice(0, 5);
-  const lastActualSide = recentSides[0] || 'BIG';
-  let predictedSide = lastActualSide, breakerTriggered = false;
-  if (recentSides.length >= 4) { const lastFour = recentSides.slice(0, 4); if (lastFour.every(s => s === lastFour[0])) { predictedSide = lastFour[0] === 'BIG' ? 'SMALL' : 'BIG'; breakerTriggered = true; } }
-  if (!breakerTriggered && recentResults.length >= 2) { const lastTwo = recentResults.slice(0, 2); if (lastTwo[0].status === 'DEFEAT' && lastTwo[1].status === 'DEFEAT' && lastTwo[0].predicted === lastTwo[1].predicted) { predictedSide = lastTwo[0].predicted === 'BIG' ? 'SMALL' : 'BIG'; breakerTriggered = true; } }
-  if (!breakerTriggered) predictedSide = lastActualSide;
-  const pool = predictedSide === 'BIG' ? [5, 6, 7, 8, 9] : [0, 1, 2, 3, 4];
-  const numberCounts = {}; recentNumbers.forEach(n => { numberCounts[n] = (numberCounts[n] || 0) + 1; });
-  const sortedPool = pool.sort((a, b) => (numberCounts[a] || 0) - (numberCounts[b] || 0));
-  const weights = [0.32, 0.26, 0.21, 0.13, 0.08];
-  let random = Math.random(), cumulative = 0, predictedNumber = sortedPool[0];
-  for (let i = 0; i < sortedPool.length; i++) { cumulative += weights[i]; if (random < cumulative) { predictedNumber = sortedPool[i]; break; } }
-  return { side: predictedSide, number: predictedNumber };
-}
-
-function generateSmartPrediction() {
-  const completedHistory = historyData.filter(h => h.status !== 'PENDING' && h.actualNum !== undefined);
-  const recentNumbers = completedHistory.slice(0, 10).map(h => h.actualNum).filter(n => n !== undefined);
-  if (recentNumbers.length < 2) {
-    const now = new Date();
-    const serverSeed = selectedServer === 'server1' ? 0 : selectedServer === 'server2' ? 1 : 2;
-    const side = (now.getUTCMinutes() + serverSeed) % 2 === 0 ? 'BIG' : 'SMALL';
-    const pool = side === 'BIG' ? [5, 6, 7, 8, 9] : [0, 1, 2, 3, 4];
-    return { side, number: pool[Math.floor(Math.random() * pool.length)] };
-  }
-  switch (selectedServer) {
-    case 'server1': return alphaLogic(recentNumbers);
-    case 'server2': return betaLogic(recentNumbers, completedHistory);
-    case 'server3': return gammaLogic(recentNumbers, completedHistory);
-    default: return alphaLogic(recentNumbers);
-  }
-}
-
-function updateUI(side, num) {
-  const sideBall = document.getElementById('sideBall');
-  sideBall.className = `side-ball ${side === 'BIG' ? 'big' : 'small'} font-orbitron`;
-  sideBall.textContent = side === 'BIG' ? 'B' : 'S';
-  const numberBall = document.getElementById('numberBall');
-  numberBall.textContent = num;
-  numberBall.className = `ball lg ${getBallClass(num)} font-orbitron`;
-}
-
-async function checkResults() {
-  try {
-    const response = await fetch(HISTORY_API);
-    const data = await response.json();
-    if (data?.data?.list && Array.isArray(data.data.list)) {
-      const results = data.data.list;
-      let updated = false;
-      historyData = historyData.map(item => {
-        if (item.status !== 'PENDING') return item;
-        const result = results.find(r => r.issueNumber === item.period);
-        if (result) {
-          const actualNum = parseInt(result.number, 10);
-          const actualSide = actualNum >= 5 ? 'BIG' : 'SMALL';
-          const isNumberMatch = item.predictedNum === actualNum;
-          const isSideMatch = item.predicted === actualSide;
-          updated = true;
-          let status;
-          if (isNumberMatch) status = 'JACKPOT'; else if (isSideMatch) status = 'VICTORY'; else status = 'DEFEAT';
-          return { ...item, actualNum, status };
+    window.copyKey = function(key) {
+      navigator.clipboard.writeText(key).then(() => {
+        showToast('KEY COPIED TO CLIPBOARD');
+        const btn = document.getElementById(`copy-${key}`);
+        if (btn) {
+          btn.classList.add('copied');
+          btn.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>`;
+          setTimeout(() => {
+            btn.classList.remove('copied');
+            btn.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>`;
+          }, 2000);
         }
-        return item;
       });
-      if (updated) { localStorage.setItem('historyData', JSON.stringify(historyData)); updateStats(); renderHistory(); }
+    };
+
+    window.addKey = async function() {
+      const input = document.getElementById('newKeyInput');
+      const key = input.value.trim().toUpperCase();
+      const expiryHours = parseInt(document.getElementById('expirySelect').value);
+      if (!key) { showToast('Please enter a key', 'error'); return; }
+      try {
+        await set(ref(db, `keys/${key}`), {
+          key,
+          createdAt: Date.now(),
+          expiresAt: Date.now() + expiryHours * 3600000,
+          active: true,
+          usageCount: 0,
+          deviceId: null
+        });
+        input.value = '';
+        showToast('KEY ADDED SUCCESSFULLY');
+      } catch (e) {
+        showToast('Failed to add key', 'error');
+      }
+    };
+
+    window.revokeKey = async function(key) {
+      await remove(ref(db, `keys/${key}`));
+      showToast('KEY DELETED');
+    };
+
+    window.startExtend = function(key) { extendingKey = key; renderKeys(lastKeys); };
+    window.cancelExtend = function() { extendingKey = null; renderKeys(lastKeys); };
+
+    window.applyExtend = async function(key) {
+      const sel = document.getElementById(`extend-${key}`);
+      const hours = parseInt(sel.value);
+      const snap = await get(ref(db, `keys/${key}`));
+      if (snap.exists()) {
+        await update(ref(db, `keys/${key}`), { expiresAt: snap.val().expiresAt + hours * 3600000 });
+        extendingKey = null;
+        showToast(`KEY EXTENDED BY ${hours} HOURS`);
+      }
+    };
+
+    let lastKeys = [];
+
+    function renderKeys(keys) {
+      lastKeys = keys;
+      const now = Date.now();
+      const active = keys.filter(k => k.active && now < k.expiresAt);
+      const totalUsed = keys.reduce((a, k) => a + (k.usageCount || 0), 0);
+      document.getElementById('totalKeys').textContent = active.length;
+      document.getElementById('activeKeys').textContent = active.length;
+      document.getElementById('usedKeys').textContent = totalUsed;
+      document.getElementById('activeCount').textContent = active.length + ' NO';
+      const list = document.getElementById('activeKeysList');
+      if (!active.length) {
+        list.innerHTML = '<div class="empty-state">No active keys</div>';
+        return;
+      }
+      list.innerHTML = active.map(k => `
+        <div class="key-card">
+          <div class="key-info">
+            <div class="key-name-row">
+              <div class="key-name">${k.key}</div>
+              <button id="copy-${k.key}" class="copy-btn" onclick="copyKey('${k.key}')">
+                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+              </button>
+            </div>
+            <div class="key-meta">
+              <span><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg> EXPIRES: ${formatTimeRemaining(k.expiresAt - now)}</span>
+              <span>USE: ${k.usageCount || 0}</span>
+              ${k.deviceId ? '<span class="in-use"><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg> IN USE</span>' : ''}
+            </div>
+          </div>
+          <div class="key-actions">
+            ${extendingKey === k.key ? `
+              <div class="extend-controls">
+                <select id="extend-${k.key}" class="extend-select">
+                  <option value="1">+1h</option><option value="6">+6h</option><option value="24">+1d</option><option value="168">+7d</option>
+                </select>
+                <button class="apply-btn" onclick="applyExtend('${k.key}')">Apply</button>
+                <button class="cancel-btn" onclick="cancelExtend()">Cancel</button>
+              </div>
+            ` : `
+              <button class="action-btn extend" onclick="startExtend('${k.key}')">
+                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg> Extend
+              </button>
+              <button class="action-btn revoke" onclick="revokeKey('${k.key}')">
+                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg> Delete
+              </button>
+            `}
+          </div>
+        </div>
+      `).join('');
     }
-  } catch (error) { console.error('Failed to fetch results:', error); }
-}
 
-function autoPredict() {
-  const currentPeriod = getPeriod();
-  if (currentPeriod === lastSavedPeriod) return;
-  const p = generateSmartPrediction();
-  updateUI(p.side, p.number);
-  const newEntry = { period: currentPeriod, predicted: p.side, predictedNum: p.number, status: 'PENDING', server: selectedServer };
-  historyData.unshift(newEntry);
-  historyData = historyData.slice(0, 50);
-  localStorage.setItem('historyData', JSON.stringify(historyData));
-  localStorage.setItem('period', currentPeriod);
-  localStorage.setItem('side', p.side);
-  localStorage.setItem('num', String(p.number));
-  lastSavedPeriod = currentPeriod;
-  updateStats(); renderHistory();
-}
-
-checkAuth();
-</script>
+    onValue(keysRef, (snapshot) => {
+      const data = snapshot.val();
+      renderKeys(data ? Object.values(data) : []);
+    });
+  </script>
 </body>
 </html>
